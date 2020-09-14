@@ -125,6 +125,7 @@ export default {
       dark: false,
       themes: {
         light: {
+          background: '#f8f8f8',
           primary: "#F7A072",
           background: '#f8f8f8',
           accent: colors.grey.darken3,
