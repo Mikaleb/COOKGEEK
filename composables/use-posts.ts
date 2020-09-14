@@ -1,6 +1,6 @@
 import { reactive, toRefs, SetupContext } from '@vue/composition-api'
 import axios from 'axios'
-import { ArticleConfig } from '@/types/article'
+import { ArticleConfig, Article } from '@/types/article'
 
 interface Options {
   ctx: SetupContext
@@ -8,7 +8,7 @@ interface Options {
 
 type globalState = {
   articles: object | null
-  article: object[] | null
+  article: Article[] | null
 }
 
 export default function usePosts({ ctx }: Options) {
@@ -21,7 +21,7 @@ export default function usePosts({ ctx }: Options) {
 
   const globalState: globalState = reactive({
     articles: {},
-    article: [{}],
+    article: [],
   })
 
   const Cookie = process.client ? require('js-cookie') : undefined

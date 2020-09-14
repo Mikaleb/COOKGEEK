@@ -63,3 +63,9 @@ export default defineComponent({
   },
 })
 </script>
+<style lang="sass">
+.theme--dark.v-application
+  background-color: var(--v-background-base, #F8F8F8) !important
+.theme--light.v-application
+  background-color: var(--v-background-base, white) !important
+</style>
