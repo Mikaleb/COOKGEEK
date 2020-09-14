@@ -60,6 +60,7 @@ export default {
   */
   plugins: [
     '@/plugins/composition',
+    '@/plugins/disqus',
   ],
   /*
   ** Auto import components

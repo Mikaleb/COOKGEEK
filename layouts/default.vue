@@ -6,7 +6,11 @@
         <span class="text-white">{{ $t('common.menu.recipe') }}</span>
       </v-btn>
       <v-spacer />
-      <v-toolbar-title v-text="title" />
+      <v-toolbar-title>
+        <nuxt-link to="/">
+          <span style="color:white">{{title}}</span>
+        </nuxt-link>
+      </v-toolbar-title>
       <v-spacer />
 
       <v-btn text href="https://cuisinedegeek.com/shop">
