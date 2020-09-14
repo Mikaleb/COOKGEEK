@@ -6,6 +6,27 @@ export default {
   ** See https://nuxtjs.org/api/configuration-mode
   */
   ssr: true,
+
+  server: {
+    port: 8383, // par défaut : 3000
+    host: '0.0.0.0' // par défaut : localhost
+  },
+
+  generate: {
+    fallback: true,
+    routes() {
+      return axios.get(`${process.env.NUXT_ENV_WORDPRESS_API_URL}/wp-json/wp/v2/recipe`).then(res => {
+        return res.data.map((data) => {
+          return '/' + data.slug
+        })
+      })
+    }
+  },
+  /*
+   ** Customize the progress-bar color
+   */
+  loading: { color: '#f7a072' },
+
   /*
   ** Nuxt target
   ** See https://nuxtjs.org/api/configuration-target
@@ -31,7 +52,7 @@ export default {
   ** Global CSS
   */
   css: [
-    '~assets/scss/tailwind.scss'
+    '~assets/tailwind.scss'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -39,8 +60,6 @@ export default {
   */
   plugins: [
     '@/plugins/composition',
-    require('tailwindcss'),
-    require('autoprefixer'),
   ],
   /*
   ** Auto import components
@@ -52,6 +71,7 @@ export default {
   */
   buildModules: [
     '@nuxt/typescript-build',
+    '@nuxtjs/tailwindcss',
     '@nuxtjs/vuetify',
   ],
   /*
@@ -101,6 +121,7 @@ export default {
       dark: false,
       themes: {
         light: {
+          background: '#f8f8f8',
           primary: "#F7A072",
           accent: colors.grey.darken3,
           secondary: colors.amber.darken3,

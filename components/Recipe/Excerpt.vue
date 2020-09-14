@@ -62,7 +62,7 @@ import {
   onMounted,
 } from '@vue/composition-api'
 import RecipeImage from '~/components/Recipe/Image.vue'
-import TimePill from '~/components/Recipe/TimePill.vue'
+import TimePill from '~/components/Recipe/Time/Global.vue'
 import Metas from '~/components/Recipe/Metas.vue'
 
 export default defineComponent({
@@ -81,9 +81,9 @@ export default defineComponent({
 
       let slugUrl = null
       if (cookieLang) {
-        slugUrl = cookieLang + '/' + slug + '/'
+        slugUrl = '/recipe/' + slug + '/'
       } else {
-        slugUrl = slug + '/'
+        slugUrl = '/recipe/' + slug + '/'
       }
       return slugUrl
     }
