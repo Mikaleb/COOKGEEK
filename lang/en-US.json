@@ -33,5 +33,7 @@
       "not-found": "It seems that we couldn't find any results based on your search,",
       "but-others": "but you can check out the homepage to see other recipes!"
     }
-  }
+  },
+  "select-lang": "English"
+
 }

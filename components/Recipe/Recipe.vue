@@ -1,24 +1,48 @@
 <template>
-  <article class="single" v-if="propData">
-    <v-row class>
-      <v-col :lg="4" :md="4" :sm="12">
-        <v-card class shaped style="border-radius: 1rem !important;">
+  <div>
+    <!-- PC -->
+    <article class="single hidden-sm-and-down" v-if="propData">
+      <v-row class>
+        <v-col :lg="4" :md="4" :sm="12">
+          <v-card class shaped style="border-radius: 1rem !important;">
+            <HoverImage :data="propData"></HoverImage>
+            <template v-if="propData.acf" id="ingredients">
+              <v-card-title class="font-weight-bold">{{ $tc('common.recipe.ingredient', 2) }}</v-card-title>
+              <v-card-text>
+                <Ingredients :data="propData.acf.ingredients"></Ingredients>
+              </v-card-text>
+            </template>
+          </v-card>
+        </v-col>
+        <v-col :lg="7" :md="7" :sm="12" offset-xs="0" offset-md="1">
+          <TitleCard :data="propData" v-if="propData"></TitleCard>
+          <steps v-if="propData" :steps="propData.acf.steps"></steps>
+          <comments></comments>
+        </v-col>
+      </v-row>
+    </article>
+    <!-- Mobile -->
+    <article class="single hidden-md-and-up" v-if="propData">
+      <v-row class>
+        <v-col :lg="7" :md="7" :sm="12" offset-xs="0" offset-md="1">
           <HoverImage :data="propData"></HoverImage>
-          <template v-if="propData.acf" id="ingredients">
-            <v-card-title class="font-weight-bold">{{ $tc('common.recipe.ingredient', 2) }}</v-card-title>
-            <v-card-text>
-              <Ingredients :data="propData.acf.ingredients"></Ingredients>
-            </v-card-text>
-          </template>
-        </v-card>
-      </v-col>
-      <v-col :lg="7" :md="7" :sm="12" offset-xs="0" offset-md="1">
-        <TitleCard :data="propData" v-if="propData"></TitleCard>
-        <steps v-if="propData" :steps="propData.acf.steps"></steps>
-        <comments></comments>
-      </v-col>
-    </v-row>
-  </article>
+          <TitleCard :data="propData" v-if="propData"></TitleCard>
+        </v-col>
+        <v-col :lg="4" :md="4" :sm="12">
+          <v-card class shaped style="border-radius: 1rem !important;">
+            <template v-if="propData.acf" id="ingredients">
+              <v-card-title class="font-weight-bold">{{ $tc('common.recipe.ingredient', 2) }}</v-card-title>
+              <v-card-text>
+                <Ingredients :data="propData.acf.ingredients"></Ingredients>
+              </v-card-text>
+            </template>
+          </v-card>
+          <steps v-if="propData" :steps="propData.acf.steps"></steps>
+          <comments></comments>
+        </v-col>
+      </v-row>
+    </article>
+  </div>
 </template>
 
 <script lang="ts">

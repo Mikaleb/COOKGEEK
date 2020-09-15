@@ -1,15 +1,16 @@
 <template>
   <div>
-    <nuxt-link
-      v-for="(locale, i) in availableLocales"
-      :key="i"
-      :to="switchLocalePath(locale.code)"
-      class="mr-4"
-    >
-      {{
-      locale.name
-      }}
-    </nuxt-link>
+    <v-select
+      v-model="choosedLocale"
+      :items="availableLocales"
+      item-text="name"
+      item-value="code"
+      menu-props="auto"
+      :label="this.$t('select-lang')"
+      hide-details
+      prepend-icon="fa-globe"
+      single-line
+    ></v-select>
   </div>
 </template>
 
@@ -19,6 +20,7 @@ import {
   ref,
   toRefs,
   reactive,
+  watch,
   computed,
   onMounted,
 } from '@vue/composition-api'
@@ -30,6 +32,7 @@ export default defineComponent({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   setup(props, ctx) {
     // @ts-ignore
+    const choosedLocale = ref('')
     const availableLocales = computed(() =>
       // @ts-ignore
       ctx.root.$i18n.locales.filter(
@@ -37,7 +40,19 @@ export default defineComponent({
         (locale: any) => locale.code !== ctx.root.$i18n.locale
       )
     )
-    return { availableLocales }
+
+    watch(
+      () => choosedLocale.value,
+      (newLocale, prevLocale) => {
+        ctx.root.$i18n.setLocale(newLocale)
+      }
+    )
+
+    onMounted(() => {
+      choosedLocale.value = ctx.root.$i18n.locale
+    })
+
+    return { availableLocales, choosedLocale }
   },
 })
 </script>

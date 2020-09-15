@@ -83,7 +83,6 @@ export default defineComponent({
       })
       if (article.value) {
         title.value = article.value[0]?.title.rendered
-        console.log('article.value[0', article.value[0]['_links'])
         if (article.value[0]['_links']) {
           const recipePictures = await loadFullDataset(
             article.value[0]['_links']['wp:featuredmedia'][0].href

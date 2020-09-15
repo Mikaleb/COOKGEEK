@@ -1,5 +1,5 @@
 import colors from 'vuetify/es5/util/colors'
-
+import head from './config/head'
 export default {
   /*
   ** Nuxt rendering mode
@@ -36,18 +36,7 @@ export default {
   ** Headers of the page
   ** See https://nuxtjs.org/api/configuration-head
   */
-  head: {
-    titleTemplate: '%s - ' + process.env.npm_package_name,
-    title: process.env.npm_package_name || '',
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
-    ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
-  },
+  head,
   /*
   ** Global CSS
   */
@@ -74,6 +63,12 @@ export default {
     '@nuxt/typescript-build',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/vuetify',
+    [
+      '@nuxtjs/google-analytics',
+      {
+        id: 'UA-56116805-1'
+      }
+    ],
   ],
   /*
   ** Nuxt.js modules
@@ -82,6 +77,12 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
+    [
+      'nuxt-lazy-load',
+      {
+        directiveOnly: true
+      }
+    ],
     // Doc: https://github.com/nuxt/content
     '@nuxt/content',
     [
@@ -102,6 +103,11 @@ export default {
       }
     ],
   ],
+
+  'google-adsense': {
+    id: 'ca-pub-3386226072112083'
+  },
+
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
