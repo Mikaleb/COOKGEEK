@@ -7,7 +7,9 @@
     "subscribe": "Subscribe",
     "ads": {
       "title": "Advertisement",
-      "shop": "🛒 Shop"
+      "shop": "🛒 Shop",
+      "instagram": "Instagram"
+
     },
     "recipe": {
       "last": "Last recipe | Last recipes",

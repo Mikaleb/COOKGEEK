@@ -1,9 +1,11 @@
 <template>
-  <script v-html="getRecipeStructuredData()" type="application/ld+json"></script>
+  <script type="application/ld+json" v-if="updatedData">
+  {{updatedData}}
+  </script>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, onMounted } from '@vue/composition-api'
+import { defineComponent, ref, computed, onMounted } from '@vue/composition-api'
 import axios from 'axios'
 
 export default defineComponent({
@@ -24,15 +26,19 @@ export default defineComponent({
 
     const url = computed(() => window.location.href)
 
+    let structuredData: any = {
+      '@context': 'http://schema.org',
+      '@type': 'Recipe',
+      author: {
+        '@type': 'Person',
+        name: 'Cuisine De Geek',
+      },
+    }
+
+    const updatedData = ref()
+
     const getRecipeStructuredData = async () => {
-      let structuredData: any = {
-        '@context': 'http://schema.org',
-        '@type': 'Recipe',
-        author: {
-          '@type': 'Person',
-          name: 'Cuisine De Geek',
-        },
-      }
+      updatedData.value = structuredData
 
       const prepTime = propData.value.acf.preparing_time
         ? parseFloat(propData.value.acf.preparing_time)
@@ -45,31 +51,32 @@ export default defineComponent({
         : 0
 
       if (propData.value.id) {
-        structuredData.name = propData.value.title.rendered
+        updatedData.value.name = propData.value.title.rendered
           ? propData.value.title.rendered
           : null
-        structuredData.datePublished = propData.value.date
+        updatedData.value.datePublished = propData.value.date
           ? propData.value.date
           : null
-        structuredData.recipeYield = propData.value.acf.servings
+        updatedData.value.recipeYield = propData.value.acf.servings
           ? propData.value.acf.servings
           : null
-        structuredData.recipeCategory = propData.value._embedded[
+        updatedData.value.recipeCategory = propData.value._embedded[
           'wp:term'
         ][0][0].name
           ? propData.value._embedded['wp:term'][0][0].name
           : null
-        structuredData.description =
+        updatedData.value.description =
           propData.value.content.rendered &&
           propData.value.content.protected === false
             ? propData.value.content.rendered
             : null
 
-        structuredData.prepTime = 'PT' + prepTime + 'M'
-        structuredData.cookTime = 'PT' + cookTime + 'M'
-        structuredData.totalTime = 'PT' + (prepTime + cookTime + restTime) + 'M'
+        updatedData.value.prepTime = 'PT' + prepTime + 'M'
+        updatedData.value.cookTime = 'PT' + cookTime + 'M'
+        updatedData.value.totalTime =
+          'PT' + (prepTime + cookTime + restTime) + 'M'
 
-        structuredData.keywords = propData.value._embedded['wp:term'][1]
+        updatedData.value.keywords = propData.value._embedded['wp:term'][1]
           ? propData.value._embedded['wp:term'][1]
               .map((data: any) => {
                 return data.name
@@ -77,13 +84,13 @@ export default defineComponent({
               .join(', ')
           : null
 
-        structuredData.recipeIngredient = propData.value.acf.ingredients
+        updatedData.value.recipeIngredient = propData.value.acf.ingredients
           ? propData.value.acf.ingredients.map((data: any) => {
               return data.quantity + ' ' + data.name
             })
           : null
 
-        structuredData.recipeInstructions = propData.value.acf.steps
+        updatedData.value.recipeInstructions = propData.value.acf.steps
           ? propData.value.acf.steps.map((data: any, index: number) => {
               return {
                 '@type': 'HowToStep',
@@ -99,14 +106,22 @@ export default defineComponent({
           propData.value._links['wp:featuredmedia'][0].href
         )
         if (recipePictures) {
-          structuredData.image = [recipePictures.source_url]
+          updatedData.value.image = [recipePictures.source_url]
         }
       }
-
-      return structuredData
     }
 
-    return { propData, getRecipeStructuredData, loadFullDataset }
+    onMounted(async () => {
+      await getRecipeStructuredData()
+    })
+
+    return {
+      propData,
+      getRecipeStructuredData,
+      loadFullDataset,
+      structuredData,
+      updatedData,
+    }
   },
 })
 </script>

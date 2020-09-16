@@ -25,7 +25,8 @@
     "nuxt-lazy-load": "^1.2.4",
     "tailwindcss": "^1.8.10",
     "vue-disqus": "^4.0.1",
-    "vue-i18n": "^8.21.1"
+    "vue-i18n": "^8.21.1",
+    "vue-instagram-embed": "^1.0.0"
   },
   "devDependencies": {
     "@nuxt/types": "^2.14.0",

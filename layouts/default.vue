@@ -59,6 +59,7 @@
     </v-main>
     <v-footer>
       <span class="mr-4">&copy; {{ new Date().getFullYear() }}</span>
+      <v-spacer />
       <LangSwitcher></LangSwitcher>
     </v-footer>
   </v-app>
