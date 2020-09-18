@@ -3,7 +3,7 @@
     <v-app-bar fixed app color="#F7A072">
       <v-btn text href to="/">
         <v-icon left color="white">fa-utensils</v-icon>
-        <span class="text-white">{{ $t('common.menu.recipe') }}</span>
+        <span class="text-white">{{ $tc('common.menu.recipe', 2) }}</span>
       </v-btn>
       <v-spacer />
       <v-toolbar-title>
