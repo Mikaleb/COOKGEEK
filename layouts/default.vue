@@ -54,7 +54,7 @@
           <v-col :lg="4" :md="4" :sm="12" offset-md="1" :offset-sm="0" class>
             <!-- Widgets -->
             <carousel-shop></carousel-shop>
-            <!-- <adsense></adsense> -->
+            <adsense></adsense>
           </v-col>
         </v-row>
       </v-container>
@@ -70,6 +70,7 @@
 <script lang="ts">
 import { defineComponent, ref } from '@vue/composition-api'
 import LangSwitcher from '~/components/Menu/LangSwitcher.vue'
+import Adsense from '~/components/Widget/Adsense.vue'
 import CarouselShop from '~/components/Widget/CarouselShop.vue'
 import Searchbar from '~/components/Search/Searchbar.vue'
 
@@ -79,6 +80,7 @@ export default defineComponent({
     LangSwitcher,
     CarouselShop,
     Searchbar,
+    Adsense,
   },
   //@ts-ignore
   head() {
