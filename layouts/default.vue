@@ -1,7 +1,7 @@
 <template>
   <v-app dark>
     <v-app-bar fixed app color="#F7A072">
-      <v-btn text href to="/">
+      <v-btn text href to="/" class="hidden-sm-and-down">
         <v-icon left color="white">fa-utensils</v-icon>
         <span class="text-white">{{ $tc('common.menu.recipe', 2) }}</span>
       </v-btn>
@@ -13,7 +13,10 @@
         </nuxt-link>
       </v-toolbar-title>
       <v-spacer />
-      <searchbar></searchbar>
+      <div class="hidden-sm-and-down">
+        <searchbar></searchbar>
+      </div>
+
       <v-spacer />
 
       <v-btn text :to="'/shop'">
@@ -45,8 +48,12 @@
         <v-icon>fab fa-twitter</v-icon>
       </v-btn>
     </v-app-bar>
+
     <v-main>
       <v-container>
+        <div class="hidden-md-and-up">
+          <searchbar></searchbar>
+        </div>
         <v-row class="mt-6 mb-6">
           <v-col :lg="7" :md="7" :sm="12">
             <nuxt />

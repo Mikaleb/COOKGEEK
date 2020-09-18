@@ -9,7 +9,7 @@ export default {
     return `${title} - Cuisine De Geek`
   },
   meta: [
-    { charset: 'utf-8' },
+    { charset: 'UTF-8' },
     { name: 'viewport', content: 'width=device-width, initial-scale=1' },
     { name: 'theme-color', content: '#f7a072' },
     { name: 'robots', content: 'index,follow' },
@@ -44,6 +44,7 @@ export default {
   ],
   link: [
     { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+    { rel: 'shortcut icon', type: 'image/x-icon', href: '/favicon.ico' },
     { rel: 'apple-touch-icon', href: '/ogimage.png' },
     { rel: 'apple-touch-startup-image', href: '/ogimage.png' },
     { rel: 'alternate', hreflang: 'fr', href: '/fr' },

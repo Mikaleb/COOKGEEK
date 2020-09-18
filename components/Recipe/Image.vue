@@ -6,7 +6,7 @@
         v-if="propImageLink"
         :height="propHeight"
         :alt="propImageLink.alt_text"
-        :src="searchResult.source_url"
+        :src="urlImg"
       ></v-img>
     </nuxt-link>
   </div>
@@ -36,6 +36,7 @@ export default defineComponent({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   setup(props, ctx) {
     const globalState = reactive({ searchResult: {} })
+    const urlImg = ref('')
 
     const propImageLink = computed(() => props.imageLink)
     const propClasses = computed(() => props.classProp)
@@ -46,6 +47,14 @@ export default defineComponent({
       // We need to load the data from the value passed, call api, then return the api data
       const { data } = await axios.get(val)
       globalState.searchResult = data
+      urlImg.value =
+        //@ts-ignore
+        globalState.searchResult?.media_details?.sizes?.medium_large?.source_url
+          ? //@ts-ignore
+            globalState.searchResult?.media_details?.sizes?.medium_large
+              ?.source_url
+          : //@ts-ignore
+            globalState.searchResult?.media_details?.sizes?.medium?.source_url
     }
 
     onMounted(async () => {
@@ -58,6 +67,7 @@ export default defineComponent({
       propHeight,
       ...toRefs(globalState),
       propHref,
+      urlImg,
     }
   },
 })

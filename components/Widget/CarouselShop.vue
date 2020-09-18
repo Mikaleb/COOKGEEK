@@ -7,6 +7,7 @@
       <v-card-text style="min-height:150px;min-width:150px">
         <v-carousel
           cycle
+          lazy
           interval="12000"
           height="400"
           hide-delimiter-background
@@ -16,6 +17,7 @@
           <v-carousel-item
             v-for="(product, i) in products.products"
             :key="i"
+            lazy
             :src="product.image.src"
             :href="'https://shop.cuisinedegeek.com/'"
             transition="fade-transition"

@@ -34,23 +34,25 @@
             </p>
           </div>
 
-          <v-row>
+          <v-row class="justify-center">
             <v-col cols="12">
-              <v-row class>
-                <div class="ma-3 pa-3" v-for="(n,i) in data" :key="n.id">
+              <v-row class="justify-center">
+                <template v-for="(n,i) in data">
                   <template v-if="i <= 11">
-                    <a :href="n.permalink" target="_blank">
-                      <v-hover v-slot:default="{ hover }">
-                        <v-img
-                          :src="n.media_url"
-                          :height="150"
-                          :width="150"
-                          :class="{ 'on-hover': hover }"
-                        ></v-img>
-                      </v-hover>
-                    </a>
+                    <div class="ma-3 pa-3" :key="n.id">
+                      <a :href="n.permalink" target="_blank">
+                        <v-hover v-slot:default="{ hover }">
+                          <v-img
+                            :src="n.media_url"
+                            :height="150"
+                            :width="150"
+                            :class="{ 'on-hover': hover }"
+                          ></v-img>
+                        </v-hover>
+                      </a>
+                    </div>
                   </template>
-                </div>
+                </template>
               </v-row>
             </v-col>
           </v-row>
