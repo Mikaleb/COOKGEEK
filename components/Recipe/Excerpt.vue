@@ -1,6 +1,6 @@
 <template>
   <div v-if="propArticle">
-    <v-container>
+    <v-container ml-0 pl-0>
       <v-row no-gutters class="shadow rounded-r-xl">
         <v-col v-if="propArticle._links" class="rounded-xl" :sm="6" :md="3">
           <RecipeImage
