@@ -91,7 +91,10 @@ export default defineComponent({
     }
 
     const redirectToRecipe = async (val: string) => {
-      ctx.root.$router.push(val)
+      ctx.root.$router.push({
+        name: 'recipe-article___' + ctx.root.$i18n.locale,
+        params: { article: val },
+      })
     }
 
     const redirectToSearchResults = (val: any) => {

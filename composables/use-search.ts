@@ -49,7 +49,9 @@ export default function useSearch({ ctx }: Options) {
 
   const setSelectedResult = async (val: any) => {
     // We need to load the data from the value passed, call api, then return the api data
-    const { data } = await axios.get(val._links.self[0].href)
+    const { data } = await axios.get(
+      process.env.NUXT_ENV_WORDPRESS_API_URL + `/wp-json/wp/v2/recipe/${val.id}`
+    )
     globalState.selectedResult = data
   }
 
