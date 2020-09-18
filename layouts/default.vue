@@ -13,6 +13,8 @@
         </nuxt-link>
       </v-toolbar-title>
       <v-spacer />
+      <searchbar></searchbar>
+      <v-spacer />
 
       <v-btn text :to="'/shop'">
         <v-icon left color="white">fas fa-shopping-cart</v-icon>
@@ -69,12 +71,14 @@
 import { defineComponent, ref } from '@vue/composition-api'
 import LangSwitcher from '~/components/Menu/LangSwitcher.vue'
 import CarouselShop from '~/components/Widget/CarouselShop.vue'
+import Searchbar from '~/components/Search/Searchbar.vue'
 
 export default defineComponent({
   name: 'ContentLayout',
   components: {
     LangSwitcher,
     CarouselShop,
+    Searchbar,
   },
   //@ts-ignore
   head() {
