@@ -7,7 +7,9 @@
           <v-card class shaped style="border-radius: 1rem !important;">
             <HoverImage :data="propData"></HoverImage>
             <template v-if="propData.acf" id="ingredients">
-              <v-card-title class="font-weight-bold">{{ $tc('common.recipe.ingredient', 2) }}</v-card-title>
+              <v-card-title
+                class="font-weight-bold"
+              >{{ $tc('common.recipe.ingredient', propData.acf.ingredients.length) }}</v-card-title>
               <v-card-text>
                 <Ingredients :data="propData.acf.ingredients"></Ingredients>
               </v-card-text>
@@ -31,7 +33,9 @@
         <v-col :lg="4" :md="4" :sm="12">
           <v-card class shaped style="border-radius: 1rem !important;">
             <template v-if="propData.acf" id="ingredients">
-              <v-card-title class="font-weight-bold">{{ $tc('common.recipe.ingredient', 2) }}</v-card-title>
+              <v-card-title
+                class="font-weight-bold"
+              >{{ $tc('common.recipe.ingredient', propData.acf.ingredients.length) }}</v-card-title>
               <v-card-text>
                 <Ingredients :data="propData.acf.ingredients"></Ingredients>
               </v-card-text>
