@@ -98,7 +98,10 @@ export default defineComponent({
     }
 
     const redirectToSearchResults = (val: any) => {
-      ctx.root.$router.push({ path: 'search', query: { query: val } })
+      ctx.root.$router.push({
+        name: 'search___' + ctx.root.$i18n.locale,
+        query: { query: val },
+      })
     }
 
     const searchIcon = () => {

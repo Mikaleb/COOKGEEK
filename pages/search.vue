@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home" v-if="!fetchingState">
     <div class="articles">
       <h1 class="text-xl">
         {{ $t('common.search.title') }}
@@ -33,7 +33,7 @@ import {
   ref,
   watch,
   computed,
-  onMounted,
+  onBeforeMount,
 } from '@vue/composition-api'
 import usePosts from '~/composables/use-posts'
 import useSearch from '~/composables/use-search'
@@ -46,22 +46,16 @@ export default defineComponent({
   },
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   setup(props, ctx) {
+    const { fetchSearchResults, searchResults, fetching } = useSearch({ ctx })
+
     const query = computed(() =>
       ctx.root.$route.query.query ? ctx.root.$route.query.query : ''
     )
+    const items = computed(() => searchResults.value)
+    const fetchingState = computed(() => fetching.value)
 
     let entries: any = []
     const search = ref<any>(null)
-    const {
-      fetchSearchResults,
-      searchResults,
-      fetching,
-      emptySearchResults,
-      setSelectedResult,
-      selectedResult,
-    } = useSearch({ ctx })
-
-    const items = computed(() => searchResults.value)
 
     const getSearchResults = async (subtype: string) => {
       // Items have already been requested
@@ -78,11 +72,11 @@ export default defineComponent({
       }
     })
 
-    onMounted(async () => {
+    onBeforeMount(async () => {
       await getSearchResults('recipe')
     })
 
-    return { query, getSearchResults, items }
+    return { query, getSearchResults, items, fetchingState }
   },
 })
 </script>
