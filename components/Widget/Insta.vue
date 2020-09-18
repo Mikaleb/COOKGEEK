@@ -3,8 +3,7 @@
     <template>
       <a href="https://instagram.com/CuisineDeGeek" target="_blank">
         <v-card-title class="font-weight-bold">
-          <v-icon class="pr-4">fab fa-instagram</v-icon>
-          {{ $t('common.ads.instagram') }}
+          <v-icon class="pr-4">fab fa-instagram</v-icon>Instagram
         </v-card-title>
       </a>
       <v-card-text style="min-height:150px;min-width:150px">
