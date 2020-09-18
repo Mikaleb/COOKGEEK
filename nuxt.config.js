@@ -77,6 +77,7 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
+    '@nuxtjs/sitemap',
     [
       'nuxt-lazy-load',
       {
@@ -106,6 +107,19 @@ export default {
 
   'google-adsense': {
     id: 'ca-pub-3386226072112083'
+  },
+
+  sitemap: {
+    path: '/sitemap.xml',
+    cacheTime: 1000 * 60 * 60 * 2,
+    trailingSlash: true,
+    gzip: true,
+    routes: async () => {
+      const { data } = await axios.get(`${process.env.NUXT_ENV_WORDPRESS_API_URL}/wp-json/wp/v2/recipe`)
+      return data.map((data) => {
+        return '/' + data.slug
+      })
+    }
   },
 
   /*
