@@ -18,12 +18,6 @@ export default defineComponent({
   setup(props, ctx) {
     const propData: any = computed(() => props.data)
 
-    const loadFullDataset = async (val: any) => {
-      // We need to load the data from the value passed, call api, then return the api data
-      const { data } = await axios.get(val)
-      return data
-    }
-
     const url = computed(() => window.location.href)
 
     let structuredData: any = {
@@ -102,12 +96,10 @@ export default defineComponent({
       }
 
       if (propData.value._links) {
-        const recipePictures = await loadFullDataset(
+        const { data } = await axios.get(
           propData.value._links['wp:featuredmedia'][0].href
         )
-        if (recipePictures) {
-          updatedData.value.image = [recipePictures.source_url]
-        }
+        updatedData.value.image = [data.source_url]
       }
     }
 
@@ -118,7 +110,6 @@ export default defineComponent({
     return {
       propData,
       getRecipeStructuredData,
-      loadFullDataset,
       structuredData,
       updatedData,
     }

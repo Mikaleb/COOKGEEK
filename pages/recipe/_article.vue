@@ -11,7 +11,12 @@
 
 <script lang="ts">
 import axios from 'axios'
-import { defineComponent, ref, reactive, onMounted } from '@vue/composition-api'
+import {
+  defineComponent,
+  ref,
+  reactive,
+  onBeforeMount,
+} from '@vue/composition-api'
 import usePosts from '~/composables/use-posts'
 import Recipe from '~/components/Recipe/Recipe.vue'
 import StructuredData from '~/components/Recipe/StructuredData.vue'
@@ -19,42 +24,49 @@ import StructuredData from '~/components/Recipe/StructuredData.vue'
 export default defineComponent({
   name: 'PageArticle',
   head() {
+    const meta: any[] = []
+    if (this.title) {
+      meta.push({ name: 'og:title', content: `${this.title}`, hid: 'og:title' })
+      meta.push({
+        name: 'og:description',
+        content: `${this.title}`,
+        hid: 'og:description',
+      })
+      meta.push({
+        name: 'twitter:title',
+        content: `${this.title}`,
+        hid: 'twitter:title',
+      })
+      meta.push({
+        name: 'twitter:description',
+        content: `${this.title}`,
+        hid: 'twitter:description',
+      })
+    }
+    if (this.image) {
+      meta.push({ name: 'og:image', content: `${this.image}`, hid: 'og:image' })
+      meta.push({
+        name: 'twitter:image',
+        content: `${this.image}`,
+        hid: 'twitter:image',
+      })
+    }
+    if (this.imageCaption) {
+      meta.push({
+        name: 'og:image:alt',
+        content: `${this.imageCaption}`,
+        hid: 'og:image:alt',
+      })
+      meta.push({
+        name: 'twitter:image:alt',
+        content: `${this.imageCaption}`,
+        hid: 'twitter:image:alt',
+      })
+    }
+
     return {
       title: `${this.title}`,
-      meta: [
-        { name: 'og:title', content: `${this.title}`, hid: 'og:title' },
-        {
-          name: 'twitter:title',
-          content: `${this.title}`,
-          hid: 'twitter:title',
-        },
-        {
-          name: 'og:description',
-          content: `${this.title}`,
-          hid: 'og:description',
-        },
-        {
-          name: 'twitter:description',
-          content: `${this.title}`,
-          hid: 'twitter:description',
-        },
-        { name: 'og:image', content: `${this.image}`, hid: 'og:image' },
-        {
-          name: 'twitter:image',
-          content: `${this.image}`,
-          hid: 'twitter:image',
-        },
-        {
-          name: 'og:image:alt',
-          content: `${this.imageCaption}`,
-          hid: 'og:image:alt',
-        },
-        {
-          name: 'twitter:image:alt',
-          content: `${this.imageCaption}`,
-          hid: 'twitter:image:alt',
-        },
-      ],
+      meta,
     }
   },
 
@@ -65,7 +77,9 @@ export default defineComponent({
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   setup(props, ctx) {
-    const { fetchArticleForUserLang, article } = usePosts({ ctx })
+    const { fetchArticleForUserLang, article } = usePosts({
+      ctx,
+    })
     const slug = ctx.root.$route.params?.article
     let title = ref('Cuisine De Geek')
     let image = ref('')
@@ -76,7 +90,7 @@ export default defineComponent({
       return data
     }
 
-    onMounted(async () => {
+    onBeforeMount(async () => {
       await fetchArticleForUserLang({
         articleSlug: slug,
         subcategory: 'recipe',

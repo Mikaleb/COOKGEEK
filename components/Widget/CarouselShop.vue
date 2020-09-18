@@ -17,7 +17,6 @@
           <v-carousel-item
             v-for="(product, i) in products.products"
             :key="i"
-            lazy
             :src="product.image.src"
             :href="'https://shop.cuisinedegeek.com/'"
             transition="fade-transition"
