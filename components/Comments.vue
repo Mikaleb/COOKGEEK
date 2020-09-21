@@ -4,7 +4,7 @@
       <v-card shaped style="border-radius: 1rem !important;">
         <h2 class="m-4 text-2xl font-bold text-center">{{ $t('common.comments') }}</h2>
         <v-card-text>
-          <Disqus shortname="cdg-site" :identifier="`cdg-site`" :url="url"></Disqus>
+          <Disqus shortname="cdg-site" :identifier="`cdg-site`" :url="baseUrl"></Disqus>
         </v-card-text>
       </v-card>
     </v-container>
@@ -23,8 +23,10 @@ export default defineComponent({
   },
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   setup(props, ctx) {
-    const url = computed(() => window.location.href)
-    return { url }
+    const baseUrl = process.env.NUXT_ENV_BASE_URL
+      ? process.env.NUXT_ENV_BASE_URL
+      : 'https://cuisinedegeek.com'
+    return { baseUrl }
   },
 })
 </script>

@@ -1,10 +1,14 @@
 <template>
-  <div class="article-list" v-if="articles">
-    <article v-for="article in articles" :key="article.id">
-      <template v-if="article.type === 'recipe'">
-        <Excerpt :article="article" />
-      </template>
-    </article>
+  <div class="mt-6 mb-6 article-list" v-if="articles">
+    <v-container fluid grid-list-xl>
+      <v-layout wrap justify-space-around>
+        <div class="d-flex" v-for="article in articles" :key="article.id">
+          <template v-if="article.type === 'recipe'">
+            <Excerpt :article="article" />
+          </template>
+        </div>
+      </v-layout>
+    </v-container>
   </div>
 </template>
 

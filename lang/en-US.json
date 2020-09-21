@@ -9,7 +9,6 @@
       "title": "Advertisement",
       "shop": "🛒 Shop",
       "instagram": "See more on Instagram"
-
     },
     "recipe": {
       "last": "Last recipe | Last recipes",
@@ -34,8 +33,16 @@
       "no-result": "No result",
       "not-found": "It seems that we couldn't find any results based on your search,",
       "but-others": "but you can check out the homepage to see other recipes!"
+    },
+    "info": "Cuisine De Geek"
+  },
+  "select-lang": "English",
+  "recipe": {
+    "difficulty": {
+      "hard": "Difficult",
+      "medium": "Medium",
+      "simple": "Simple"
     }
   },
-  "select-lang": "English"
-
+  "language": "Language"
 }

@@ -1,6 +1,5 @@
 <template>
   <v-card shaped style="border-radius: 1rem !important" class="mb-8">
-    <template>
       <v-card-title class="font-weight-bold">{{ $t('common.ads.title') }}</v-card-title>
       <v-card-text style="min-height:150px;min-width:150px">
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -17,7 +16,6 @@
   ;(adsbygoogle = window.adsbygoogle || []).push({})
         </script>
       </v-card-text>
-    </template>
   </v-card>
 </template>
 

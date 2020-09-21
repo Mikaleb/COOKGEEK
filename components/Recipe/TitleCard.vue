@@ -29,8 +29,7 @@ export default defineComponent({
   },
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   setup(props, ctx) {
-    const difficulties = ['Simple', 'Medium', 'Difficult']
-    return { difficulties }
+    return {}
   },
 })
 </script>

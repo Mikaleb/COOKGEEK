@@ -3,7 +3,7 @@
     <!-- Servings -->
     <v-tooltip bottom>
       <template v-slot:activator="{ on }">
-        <v-chip class="mr-2" v-if="data.acf.servings > 0" v-on="on">
+        <v-chip class="mr-2" v-if="data.acf.servings > 0" v-on="on" color="primary">
           <v-icon size="medium" class="ml-1" left>fas fa-utensils</v-icon>
           <template>{{ data.acf.servings }}</template>
         </v-chip>
@@ -11,16 +11,22 @@
       <span>{{ $t('common.recipe.servings') }}</span>
     </v-tooltip>
     <!-- Universe -->
-    <v-chip class="mr-2" v-if="data.acf.universe">
+    <v-chip class="mr-2" v-if="data.acf.universe" color="#B87BC8" text-color="white">
       <v-icon size="medium" class="ml-1" left>fas fa-disease</v-icon>
       <template>{{ data.acf.universe }}</template>
     </v-chip>
     <!-- Difficulty -->
     <v-tooltip bottom>
       <template v-slot:activator="{ on }">
-        <v-chip class="mr-2" v-if="data.acf.difficulty" v-on="on">
+        <v-chip
+          class="mt-2 mr-2"
+          text-color="white"
+          v-if="data.acf.difficulty"
+          v-on="on"
+          :color="colorDiff[data.acf.difficulty]"
+        >
           <v-icon size="medium" class="ml-1" left>fas fa-tachometer-alt</v-icon>
-          <template>{{ difficulties[data.acf.difficulty] }}</template>
+          <template>{{ difficulties[data.acf.difficulty]}}</template>
         </v-chip>
       </template>
       <span>{{ $t('common.recipe.difficulty') }}</span>
@@ -39,8 +45,14 @@ export default defineComponent({
   },
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   setup(props, ctx) {
-    const difficulties = ['Simple', 'Medium', 'Difficult']
-    return { difficulties }
+    const difficulties = [
+      ctx.root.$i18n.t('recipe.difficulty.simple'),
+      ctx.root.$i18n.t('recipe.difficulty.medium'),
+      ctx.root.$i18n.t('recipe.difficulty.hard'),
+    ]
+
+    const colorDiff = ['green', 'orange', 'red']
+    return { difficulties, colorDiff }
   },
 })
 </script>

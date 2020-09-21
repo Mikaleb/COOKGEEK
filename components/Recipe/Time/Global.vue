@@ -1,5 +1,5 @@
 <template>
-  <v-chip class="mr-2" v-if="getGlobalTime(article.acf).sumMinutes > 0">
+  <v-chip class="mr-2" v-if="getGlobalTime(article.acf).sumMinutes > 0" color="primary">
     <v-icon size="medium" class="ml-1" left>far fa-hourglass</v-icon>
     <template
       v-if="getGlobalTime(article.acf).remHours > 0"

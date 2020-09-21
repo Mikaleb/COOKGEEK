@@ -21,6 +21,24 @@ export default defineComponent({
     RecipeList,
     Insta,
   },
+  head() {
+    return {
+      title: 'Cuisine De Geek',
+      meta: [
+        { name: 'twitter:title', content: 'Cuisine De Geek' },
+        {
+          name: 'twitter:description',
+          content:
+            'Cuisine De Geek got you covered on recipe based on geek universes !',
+        },
+        {
+          name: 'twitter:image',
+          content: 'https://cuisinedegeek.com/ogimage.png',
+        },
+        { name: 'twitter:card', content: 'summary_large_image' },
+      ],
+    }
+  },
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   setup(props, ctx) {
     const { articles, article, fetchArticlesList } = usePosts({ ctx })

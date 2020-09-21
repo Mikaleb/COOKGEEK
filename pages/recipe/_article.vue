@@ -14,6 +14,7 @@ import axios from 'axios'
 import {
   defineComponent,
   ref,
+  computed,
   reactive,
   onBeforeMount,
 } from '@vue/composition-api'
@@ -25,24 +26,22 @@ export default defineComponent({
   name: 'PageArticle',
   head() {
     const meta: any[] = []
-    if (this.title) {
-      meta.push({ name: 'og:title', content: `${this.title}`, hid: 'og:title' })
-      meta.push({
-        name: 'og:description',
-        content: `${this.title}`,
-        hid: 'og:description',
-      })
-      meta.push({
-        name: 'twitter:title',
-        content: `${this.title}`,
-        hid: 'twitter:title',
-      })
-      meta.push({
-        name: 'twitter:description',
-        content: `${this.title}`,
-        hid: 'twitter:description',
-      })
-    }
+    meta.push({ name: 'og:title', content: `${this.title}`, hid: 'og:title' })
+    meta.push({
+      name: 'og:description',
+      content: `${this.title}`,
+      hid: 'og:description',
+    })
+    meta.push({
+      name: 'twitter:title',
+      content: `${this.title}`,
+      hid: 'twitter:title',
+    })
+    meta.push({
+      name: 'twitter:description',
+      content: `${this.title}`,
+      hid: 'twitter:description',
+    })
     if (this.image) {
       meta.push({ name: 'og:image', content: `${this.image}`, hid: 'og:image' })
       meta.push({
@@ -80,6 +79,8 @@ export default defineComponent({
     const { fetchArticleForUserLang, article } = usePosts({
       ctx,
     })
+    const seoData = computed(() => article.value)
+
     const slug = ctx.root.$route.params?.article
     let title = ref('Cuisine De Geek')
     let image = ref('')
@@ -110,7 +111,7 @@ export default defineComponent({
       }
     })
 
-    return { article, title, image, loadFullDataset, imageCaption }
+    return { article, title, image, loadFullDataset, imageCaption, seoData }
   },
 })
 </script>

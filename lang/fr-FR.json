@@ -33,7 +33,16 @@
       "not-found": "Il semble que nous ne trouvions aucun résultat en fonction de votre recherche,",
       "but-others": "mais vous pouvez consulter la page d'accueil pour voir d'autres recettes !",
       "no-result": "Aucun résultat"
+    },
+    "info": "Cuisine De Geek"
+  },
+  "select-lang": "Français",
+  "recipe": {
+    "difficulty": {
+      "simple": "Simple",
+      "medium": "Medium",
+      "hard": "Difficile"
     }
   },
-  "select-lang": "Français"
+  "language": "Langue"
 }

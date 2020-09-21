@@ -62,32 +62,28 @@
             <!-- Widgets -->
             <carousel-shop></carousel-shop>
             <adsense></adsense>
+            <info></info>
           </v-col>
         </v-row>
       </v-container>
     </v-main>
-    <v-footer>
-      <span class="mr-4">&copy; {{ new Date().getFullYear() }}</span>
-      <v-spacer />
-      <LangSwitcher></LangSwitcher>
-    </v-footer>
   </v-app>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from '@vue/composition-api'
-import LangSwitcher from '~/components/Menu/LangSwitcher.vue'
+import { defineComponent, computed, ref } from '@vue/composition-api'
 import Adsense from '~/components/Widget/Adsense.vue'
 import CarouselShop from '~/components/Widget/CarouselShop.vue'
 import Searchbar from '~/components/Search/Searchbar.vue'
+import Info from '~/components/Widget/Info.vue'
 
 export default defineComponent({
   name: 'ContentLayout',
   components: {
-    LangSwitcher,
     CarouselShop,
     Searchbar,
     Adsense,
+    Info,
   },
   //@ts-ignore
   head() {
@@ -109,7 +105,7 @@ export default defineComponent({
           name: 'og:description',
           content: this.description || 'Cuisine De Geek',
         },
-        { hid: 'twitter:url', name: 'twitter:url', content: this.url },
+        { hid: 'twitter:url', name: 'twitter:url', content: this.localUrl },
         {
           hid: 'twitter:description',
           name: 'twitter:description',
@@ -120,8 +116,13 @@ export default defineComponent({
   },
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   setup(props, ctx) {
+    const baseUrl = process.env.NUXT_ENV_BASE_URL
+      ? process.env.NUXT_ENV_BASE_URL
+      : 'https://cuisinedegeek.com'
     const title = ref('Cuisine De Geek')
     const description = ctx.root.$i18n.t('common.meta.description')
+    const locale = computed(() => ctx.root.$i18n.locale)
+    const localUrl = computed(() => baseUrl + ctx.root.$route.fullPath)
 
     const slugUrl = () => {
       const Cookie = process.client ? require('js-cookie') : undefined
@@ -143,6 +144,8 @@ export default defineComponent({
       title,
       description,
       slugUrl,
+      locale,
+      localUrl,
     }
   },
 })

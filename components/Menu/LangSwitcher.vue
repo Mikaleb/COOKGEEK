@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="mt-6">
+    <span class="text-lg">{{$t('language')}}</span>
     <v-select
       v-model="choosedLocale"
       :items="availableLocales"

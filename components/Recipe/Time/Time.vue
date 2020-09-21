@@ -2,7 +2,7 @@
   <div>
     <v-tooltip bottom>
       <template v-slot:activator="{ on }">
-        <v-chip class="mr-2" v-if="getTimes(article.acf).prepTime > 0" v-on="on">
+        <v-chip class="mr-2" v-if="getTimes(article.acf).prepTime > 0" v-on="on" color="secondary">
           <v-icon size="medium" class="ml-1" left>{{ bowlIcon }}</v-icon>
           <template>{{ getTimes(article.acf).prepTime }} {{ $t('common.recipe.minutes') }}</template>
         </v-chip>
@@ -12,7 +12,7 @@
 
     <v-tooltip bottom>
       <template v-slot:activator="{ on }">
-        <v-chip class="mr-2" v-if="getTimes(article.acf).cookTime > 0" v-on="on">
+        <v-chip class="mr-2" v-if="getTimes(article.acf).cookTime > 0" v-on="on" color="secondary">
           <v-icon size="medium" class="ml-1" left>{{ stoveIcon }}</v-icon>
           <template>{{ getTimes(article.acf).cookTime }} {{ $t('common.recipe.minutes') }}</template>
         </v-chip>
@@ -22,7 +22,7 @@
 
     <v-tooltip bottom>
       <template v-slot:activator="{ on }">
-        <v-chip class="mr-2" v-if="getTimes(article.acf).restTime > 0" v-on="on">
+        <v-chip class="mr-2" v-if="getTimes(article.acf).restTime > 0" v-on="on" color="secondary">
           <v-icon size="medium" class="ml-1" left>{{ coffeeIcon }}</v-icon>
           <template>{{ getTimes(article.acf).restTime }} {{ $t('common.recipe.minutes') }}</template>
         </v-chip>
