@@ -7,11 +7,11 @@
         <LangSwitcher></LangSwitcher>
       </v-card-text>
     </v-card>
-    <span class="ml-8 text-xs">&copy; CDG 2017 - {{ new Date().getFullYear() }}</span>
+    <span class="ml-4 text-xs">&copy; CDG 2017 - {{ new Date().getFullYear() }}</span>
   </div>
 </template>
 
-    <script lang="ts">
+<script lang="ts">
 import { defineComponent } from '@vue/composition-api'
 import LangSwitcher from '~/components/Menu/LangSwitcher.vue'
 

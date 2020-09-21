@@ -44,5 +44,12 @@
       "simple": "Simple"
     }
   },
-  "language": "Language"
+  "language": "Language",
+  "contact": {
+    "content": "What do you want to tell us?",
+    "mail": "E-mail",
+    "name": "Name",
+    "subject": "Subject",
+    "validate": "Validate"
+  }
 }

@@ -44,5 +44,12 @@
       "hard": "Difficile"
     }
   },
-  "language": "Langue"
+  "language": "Langue",
+  "contact": {
+    "subject": "Subject",
+    "name": "Name",
+    "mail": "E-mail",
+    "content": "Que voulez-vous nous dire ?",
+    "validate": "Validate"
+  }
 }

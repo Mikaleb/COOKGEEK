@@ -44,6 +44,11 @@ export default defineComponent({
   components: {
     Result,
   },
+  head() {
+    return {
+      title: 'Search',
+    }
+  },
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   setup(props, ctx) {
     const { fetchSearchResults, searchResults, fetching } = useSearch({ ctx })

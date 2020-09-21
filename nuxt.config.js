@@ -50,6 +50,7 @@ export default {
   plugins: [
     '@/plugins/composition',
     '@/plugins/disqus',
+    { src: '@/plugins/captcha', mode: 'client' }
   ],
   /*
   ** Auto import components
@@ -76,6 +77,7 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    'nuxt-mail',
     '@nuxtjs/pwa',
     '@nuxtjs/sitemap',
     [
@@ -107,6 +109,20 @@ export default {
 
   'google-adsense': {
     id: 'ca-pub-3386226072112083'
+  },
+  mail: {
+    smtp: {
+      host: "SMTP.office365.com",
+      port: 587,
+      secure: false, // upgrade later with STARTTLS
+      tls: {
+        ciphers: 'SSLv3'
+      },
+      auth: {
+        user: "triplaner@outlook.com",
+        pass: process.env.NUXT_ENV_MAIL_MDP
+      }
+    },
   },
 
   sitemap: {

@@ -19,14 +19,12 @@
     <v-card-text>
       <div id="content">
         <!-- Excerpt -->
-        <span v-html="propArticle.content.rendered"></span>
-        <div class="flex">
-          <div class="flex-auto" id="infos">
-            <!-- Time -->
-            <time-pill :article="propArticle"></time-pill>
-            <Metas :data="propArticle"></Metas>
-          </div>
-        </div>
+        <span v-html="propArticle.content.rendered" v-if="propArticle.content.rendered"></span>
+        <!-- Time -->
+        <v-chip-group column active-class="primary--text">
+          <time-pill :article="propArticle"></time-pill>
+          <Metas :data="propArticle"></Metas>
+        </v-chip-group>
       </div>
     </v-card-text>
 

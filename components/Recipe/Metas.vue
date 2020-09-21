@@ -19,17 +19,16 @@
     <v-tooltip bottom>
       <template v-slot:activator="{ on }">
         <v-chip
-          class="mt-2 mr-2"
+          class="mr-2"
           text-color="white"
           v-if="data.acf.difficulty"
           v-on="on"
           :color="colorDiff[data.acf.difficulty]"
         >
           <v-icon size="medium" class="ml-1" left>fas fa-tachometer-alt</v-icon>
-          <template>{{ difficulties[data.acf.difficulty]}}</template>
         </v-chip>
       </template>
-      <span>{{ $t('common.recipe.difficulty') }}</span>
+      <span>{{ difficulties[data.acf.difficulty]}}</span>
     </v-tooltip>
   </span>
 </template>
