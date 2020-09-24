@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, onMounted } from '@vue/composition-api'
+import { defineComponent, reactive, onMounted } from '@nuxtjs/composition-api'
 import usePosts from '~/composables/use-posts'
 import RecipeList from '~/components/Recipe/RecipeList.vue'
 import Insta from '~/components/Widget/Insta.vue'

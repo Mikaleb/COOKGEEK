@@ -1,4 +1,4 @@
-import { reactive, toRefs, SetupContext } from '@vue/composition-api'
+import { reactive, toRefs, SetupContext } from '@nuxtjs/composition-api'
 import axios from 'axios'
 import { ArticleConfig, Article } from '@/types/article'
 
@@ -46,19 +46,6 @@ export default function usePosts({ ctx }: Options) {
     globalState.articles = data
   }
 
-  const fetchArticleForUserLang = async (config: ArticleConfig) => {
-    await fetchArticleData(config)
-    if (globalState.article) {
-      // @ts-ignore
-      if (globalState.article[0].lang !== ctx.root.$i18n.locale) {
-        const articleIdLangMatch =
-          // @ts-ignore
-          globalState.article[0].translations[ctx.root.$i18n.locale]
-        // await fetchArticleData({undefined, articleIdLangMatch, config.subcategory})
-      }
-    }
-  }
-
   const fetchArticleData = async (config: ArticleConfig) => {
     apiState.fetching = true
 
@@ -81,6 +68,5 @@ export default function usePosts({ ctx }: Options) {
     ...toRefs(apiState),
     ...toRefs(globalState),
     fetchArticlesList,
-    fetchArticleForUserLang,
   }
 }

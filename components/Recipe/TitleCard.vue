@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from '@vue/composition-api'
+import { defineComponent, computed } from '@nuxtjs/composition-api'
 import Metas from '~/components/Recipe/Metas.vue'
 import TimePills from '~/components/Recipe/Time/Time.vue'
 export default defineComponent({

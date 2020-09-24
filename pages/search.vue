@@ -34,7 +34,7 @@ import {
   watch,
   computed,
   onBeforeMount,
-} from '@vue/composition-api'
+} from '@nuxtjs/composition-api'
 import usePosts from '~/composables/use-posts'
 import useSearch from '~/composables/use-search'
 import Result from '~/components/Search/Result.vue'

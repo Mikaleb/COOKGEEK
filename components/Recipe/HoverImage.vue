@@ -30,7 +30,7 @@ import {
   onMounted,
   ref,
   computed,
-} from '@vue/composition-api'
+} from '@nuxtjs/composition-api'
 import usePosts from '~/composables/use-posts'
 
 export default defineComponent({

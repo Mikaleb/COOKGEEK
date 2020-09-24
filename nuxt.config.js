@@ -48,7 +48,6 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
-    '@/plugins/composition',
     '@/plugins/disqus',
     { src: '@/plugins/captcha', mode: 'client' }
   ],
@@ -61,6 +60,7 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
+    '@nuxtjs/composition-api',
     '@nuxt/typescript-build',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/vuetify',
@@ -71,12 +71,19 @@ export default {
       }
     ],
   ],
+
+  generate: {
+    // choose to suit your project
+    interval: 2000,
+  },
+
   /*
   ** Nuxt.js modules
   */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    'cookie-universal-nuxt',
     'nuxt-mail',
     '@nuxtjs/pwa',
     '@nuxtjs/sitemap',

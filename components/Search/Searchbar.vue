@@ -45,7 +45,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref } from '@vue/composition-api'
+import { defineComponent, computed, ref } from '@nuxtjs/composition-api'
 import useSearch from '~/composables/use-search'
 import { debounce } from 'ts-debounce'
 

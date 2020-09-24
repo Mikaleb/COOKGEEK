@@ -1,4 +1,4 @@
-import { reactive, toRefs, SetupContext } from '@vue/composition-api'
+import { reactive, toRefs, SetupContext } from '@nuxtjs/composition-api'
 import axios from 'axios'
 
 interface Options {

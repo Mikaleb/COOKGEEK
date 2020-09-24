@@ -12,7 +12,7 @@ import {
   reactive,
   computed,
   onMounted,
-} from '@vue/composition-api'
+} from '@nuxtjs/composition-api'
 import Excerpt from '~/components/Recipe/Excerpt.vue'
 import axios from 'axios'
 

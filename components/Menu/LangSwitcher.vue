@@ -24,7 +24,7 @@ import {
   watch,
   computed,
   onMounted,
-} from '@vue/composition-api'
+} from '@nuxtjs/composition-api'
 
 export default defineComponent({
   name: 'LangSwitcher',

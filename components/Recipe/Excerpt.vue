@@ -43,7 +43,7 @@ import {
   reactive,
   computed,
   onMounted,
-} from '@vue/composition-api'
+} from '@nuxtjs/composition-api'
 import RecipeImage from '~/components/Recipe/Image.vue'
 import TimePill from '~/components/Recipe/Time/Global.vue'
 import Metas from '~/components/Recipe/Metas.vue'

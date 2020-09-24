@@ -20,7 +20,7 @@ import {
   reactive,
   computed,
   onMounted,
-} from '@vue/composition-api'
+} from '@nuxtjs/composition-api'
 
 import axios from 'axios'
 

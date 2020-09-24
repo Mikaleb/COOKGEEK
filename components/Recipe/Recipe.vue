@@ -56,7 +56,7 @@ import {
   onMounted,
   ref,
   computed,
-} from '@vue/composition-api'
+} from '@nuxtjs/composition-api'
 import usePosts from '~/composables/use-posts'
 import Ingredients from '~/components/Recipe/Ingredients.vue'
 import FeaturedImage from '~/components/Recipe/FeaturedImage.vue'
@@ -82,7 +82,7 @@ export default defineComponent({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   setup(props, ctx) {
     // @ts-ignore
-    const { fetchArticleForUserLang, article } = usePosts({ ctx })
+    const {  article } = usePosts({ ctx })
     const slug = ctx.root.$route.params?.article
     const propData = computed(() => props.data)
     const colorAccentStyles = ref<any>(null)

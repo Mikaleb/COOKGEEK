@@ -33,7 +33,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
+import { defineComponent } from '@nuxtjs/composition-api'
 import { mdiStove } from '@mdi/js'
 import { mdiBowlMix } from '@mdi/js'
 import { mdiCoffee } from '@mdi/js'

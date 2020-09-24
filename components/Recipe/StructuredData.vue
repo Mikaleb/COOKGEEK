@@ -5,7 +5,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, onMounted } from '@vue/composition-api'
+import {
+  defineComponent,
+  ref,
+  computed,
+  onMounted,
+} from '@nuxtjs/composition-api'
 import axios from 'axios'
 
 export default defineComponent({

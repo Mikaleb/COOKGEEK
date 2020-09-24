@@ -28,7 +28,7 @@
   </v-card>
 </template>
 <script lang="ts">
-import { defineComponent, ref, onMounted } from '@vue/composition-api'
+import { defineComponent, ref, onMounted } from '@nuxtjs/composition-api'
 import axios from 'axios'
 
 export default defineComponent({

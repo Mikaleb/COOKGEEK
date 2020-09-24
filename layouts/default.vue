@@ -71,7 +71,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref } from '@vue/composition-api'
+import { defineComponent, computed, ref } from '@nuxtjs/composition-api'
 import Adsense from '~/components/Widget/Adsense.vue'
 import CarouselShop from '~/components/Widget/CarouselShop.vue'
 import Searchbar from '~/components/Search/Searchbar.vue'
