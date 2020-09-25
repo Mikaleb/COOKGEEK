@@ -1,4 +1,10 @@
-import { reactive, toRefs, SetupContext } from '@nuxtjs/composition-api'
+import {
+  reactive,
+  toRefs,
+  SetupContext,
+  ref,
+  useFetch,
+} from '@nuxtjs/composition-api'
 import axios from 'axios'
 import { ArticleConfig, Article } from '@/types/article'
 
@@ -49,7 +55,7 @@ export default function usePosts({ ctx }: Options) {
   const fetchArticleData = async (config: ArticleConfig) => {
     apiState.fetching = true
 
-    const { data } = await axios.get(
+    const { data } = await ctx.root.$axios.get(
       `${process.env.NUXT_ENV_WORDPRESS_API_URL}/wp-json/wp/v2/${config.subcategory}`,
       {
         params: {
@@ -68,5 +74,6 @@ export default function usePosts({ ctx }: Options) {
     ...toRefs(apiState),
     ...toRefs(globalState),
     fetchArticlesList,
+    fetchArticleData,
   }
 }
