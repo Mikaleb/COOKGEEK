@@ -3,7 +3,11 @@
     <template v-if="article[0]">
       <template v-if="article[0].type === 'recipe'">
         <Recipe :data="article[0]" v-if="article[0]" type="recipe" />
-        <StructuredData :data="article[0]" v-if="article[0]"></StructuredData>
+        <StructuredData
+          :data="article[0]"
+          :imageUrl="image.source_url"
+          v-if="article[0]"
+        ></StructuredData>
       </template>
     </template>
   </div>
@@ -62,6 +66,11 @@ export default {
           content: title,
         },
         {
+          hid: 'og:description',
+          name: 'og:description',
+          content: title,
+        },
+        {
           hid: 'twitter:description',
           name: 'twitter:description',
           content: title,
@@ -70,6 +79,16 @@ export default {
           hid: 'twitter:title',
           name: 'twitter:title',
           content: title,
+        },
+        {
+          hid: 'og:title',
+          name: 'og:title',
+          content: title,
+        },
+        {
+          hid: 'og:type',
+          name: 'og:type',
+          content: 'article',
         },
         {
           hid: 'og:image',

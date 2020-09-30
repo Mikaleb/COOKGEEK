@@ -1,6 +1,6 @@
 <template>
-  <script type="application/ld+json" v-if="updatedData">
-  {{updatedData}}
+  <script type="application/ld+json" v-if="updatedData && propData">
+    {{updatedData}}
   </script>
 </template>
 
@@ -17,11 +17,13 @@ export default defineComponent({
   name: 'StructuredData',
   props: {
     data: Object,
+    imageUrl: String,
   },
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   setup(props, ctx) {
     const propData: any = computed(() => props.data)
+    const propImg: any = computed(() => props.imageUrl)
 
     const url = computed(() => window.location.href)
 
@@ -56,6 +58,7 @@ export default defineComponent({
         updatedData.value.datePublished = propData.value.date
           ? propData.value.date
           : null
+
         updatedData.value.recipeYield = propData.value.acf.servings
           ? propData.value.acf.servings
           : null
@@ -94,17 +97,13 @@ export default defineComponent({
               return {
                 '@type': 'HowToStep',
                 text: data.content,
-                url: url.value + '#step' + (index + 1),
+                url: url.value + '#step' + (Number(index) + 1),
               }
             })
           : null
-      }
-
-      if (propData.value._links) {
-        const { data } = await axios.get(
-          propData.value._links['wp:featuredmedia'][0].href
-        )
-        updatedData.value.image = [data.source_url]
+        if (propImg.value) {
+          updatedData.value.image = propImg.value
+        }
       }
     }
 

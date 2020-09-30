@@ -112,6 +112,7 @@ export default {
   },
 
   head() {
+    const websiteName = 'Cuisine De Geek'
     return {
       title: this.title,
       meta: [
@@ -123,19 +124,25 @@ export default {
         { name: 'og:locale', content: this.$i18n.locale, hid: 'og:locale' },
         { hid: 'twitter:url', name: 'twitter:url', content: this.localUrl },
         {
-          hid: 'twitter:description',
-          name: 'twitter:description',
-          content: this.description || 'Cuisine De Geek',
+          hid: 'application-name',
+          name: 'application-name',
+          content: websiteName,
         },
+        { hid: 'og:url', name: 'og:url', content: this.localUrl },
+        { hid: 'og:type', name: 'og:type', content: 'website' },
+        { hid: 'og:title', name: 'og:title', content: websiteName },
+        { hid: 'og:image', name: 'og:image', content: 'https//cuisinedegeek.com/ogimage.png' },
+        { hid: 'og:image:alt', name: 'og:image:alt', content: 'Logo' },
+        { hid: 'og:site_name', name: 'og:site_name', content: 'Logo' },
         {
           hid: 'description',
           name: 'description',
-          content: this.description || 'Cuisine De Geek',
+          content: this.description || websiteName,
         },
         {
           hid: 'og:description',
           name: 'og:description',
-          content: this.description || 'Cuisine De Geek',
+          content: this.description || websiteName,
         },
       ],
     }

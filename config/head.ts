@@ -1,7 +1,7 @@
 const siteTitle = 'Cuisine De Geek'
 
 export default {
-  title: siteTitle || '',
+  title: siteTitle,
   titleTemplate: (title: any) => {
     if (title === 'Cuisine De Geek') {
       return title
