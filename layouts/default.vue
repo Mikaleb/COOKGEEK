@@ -8,7 +8,12 @@
       <v-spacer />
       <v-toolbar-title>
         <nuxt-link to="/">
-          <img data-src="/logo.svg" v-lazy-load :alt="title" style="height:64px" />
+          <img
+            data-src="/logo.svg"
+            v-lazy-load
+            :alt="title"
+            style="height: 64px"
+          />
           <!-- <span style="color:white">{{title}}</span> -->
         </nuxt-link>
       </v-toolbar-title>
@@ -70,31 +75,58 @@
   </v-app>
 </template>
 
-<script lang="ts">
-import { defineComponent, computed, ref } from '@nuxtjs/composition-api'
+
+
+<script>
 import Adsense from '~/components/Widget/Adsense.vue'
 import CarouselShop from '~/components/Widget/CarouselShop.vue'
 import Searchbar from '~/components/Search/Searchbar.vue'
 import Info from '~/components/Widget/Info.vue'
 
-export default defineComponent({
-  name: 'ContentLayout',
+export default {
+  name: 'PageArticle',
+  data() {
+    return {
+      article: [],
+      image: '',
+      title: 'Cuisine De Geek',
+      description: this.$i18n.t('common.meta.description'),
+    }
+  },
   components: {
     CarouselShop,
     Searchbar,
     Adsense,
     Info,
   },
-  //@ts-ignore
+
+  computed: {
+    // Search system
+    localUrl() {
+      const baseUrl = process.env.NUXT_ENV_BASE_URL
+        ? process.env.NUXT_ENV_BASE_URL
+        : 'https://cuisinedegeek.com'
+
+      return baseUrl + this.$route.fullPath
+    },
+  },
+
   head() {
     return {
+      title: this.title,
       meta: [
         {
+          hid: 'op:markup_version',
           name: 'op:markup_version',
           content: 'v1.0',
-          hid: 'op:markup_version',
         },
-        { name: 'og:locale', content: this.locale, hid: 'og:locale' },
+        { name: 'og:locale', content: this.$i18n.locale, hid: 'og:locale' },
+        { hid: 'twitter:url', name: 'twitter:url', content: this.localUrl },
+        {
+          hid: 'twitter:description',
+          name: 'twitter:description',
+          content: this.description || 'Cuisine De Geek',
+        },
         {
           hid: 'description',
           name: 'description',
@@ -105,50 +137,10 @@ export default defineComponent({
           name: 'og:description',
           content: this.description || 'Cuisine De Geek',
         },
-        { hid: 'twitter:url', name: 'twitter:url', content: this.localUrl },
-        {
-          hid: 'twitter:description',
-          name: 'twitter:description',
-          content: this.description || 'Cuisine De Geek',
-        },
       ],
     }
   },
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  setup(props, ctx) {
-    const baseUrl = process.env.NUXT_ENV_BASE_URL
-      ? process.env.NUXT_ENV_BASE_URL
-      : 'https://cuisinedegeek.com'
-    const title = ref('Cuisine De Geek')
-    const description = ctx.root.$i18n.t('common.meta.description')
-    const locale = computed(() => ctx.root.$i18n.locale)
-    const localUrl = computed(() => baseUrl + ctx.root.$route.fullPath)
-
-    const slugUrl = () => {
-      const Cookie = process.client ? require('js-cookie') : undefined
-      const cookieLang = process.client
-        ? Cookie.get('i18n_redirected')
-          ? Cookie.get('i18n_redirected')
-          : null
-        : null
-      let slugUrl = null
-      if (cookieLang && cookieLang !== ctx.root.$i18n.defaultLocale) {
-        slugUrl = '/' + cookieLang
-      } else {
-        slugUrl = '/'
-      }
-      return slugUrl
-    }
-
-    return {
-      title,
-      description,
-      slugUrl,
-      locale,
-      localUrl,
-    }
-  },
-})
+}
 </script>
 <style lang="sass">
 .theme--dark.v-application
