@@ -1,42 +1,61 @@
 <template>
-  <v-card class="mb-6">
-    <v-card-title>Contact</v-card-title>
-    <v-card-text>
-      <v-form ref="myForm" v-model="valid" lazy-validation v-cloak>
-        <v-text-field
-          v-model="subject"
-          :rules="subjectRules"
-          :label="$t('contact.subject')"
-          required
-        ></v-text-field>
-        <v-text-field v-model="name" :label="$t('contact.name')" :rules="nameRules" required></v-text-field>
-        <v-text-field v-model="email" :rules="emailRules" :label="$t('contact.mail')" required></v-text-field>
+  <div>
+    <v-alert outlined type="success" text v-if="validated">
+      {{ $t('contact.validated') }}
+    </v-alert>
+    <v-card class="mb-6">
+      <v-card-title>{{ $t('contact.title') }}</v-card-title>
+      <v-card-text>
+        <v-form ref="myForm" v-model="valid" lazy-validation v-cloak>
+          <v-text-field
+            v-model="subject"
+            :rules="subjectRules"
+            :label="$t('contact.subject')"
+            required
+          ></v-text-field>
+          <v-text-field
+            v-model="name"
+            :label="$t('contact.name')"
+            :rules="nameRules"
+            required
+          ></v-text-field>
+          <v-text-field
+            v-model="email"
+            :rules="emailRules"
+            :label="$t('contact.mail')"
+            required
+          ></v-text-field>
 
-        <v-textarea
-          filled
-          v-model="content"
-          class="mt-4"
-          v-cloak
-          :rules="contentRules"
-          :label="$t('contact.content')"
-        ></v-textarea>
+          <v-textarea
+            filled
+            v-model="content"
+            class="mt-4"
+            v-cloak
+            :rules="contentRules"
+            :label="$t('contact.content')"
+          ></v-textarea>
 
-        <vue-hcaptcha sitekey="997baa07-065b-43cd-b65a-38f490853fd7" @verify="checkCaptcha"></vue-hcaptcha>
+          <vue-hcaptcha
+          sitekey="67d012d3-6c25-417f-a031-705c0f57fd2b"
+          @verify="checkCaptcha"
+        ></vue-hcaptcha>
 
-        <v-btn
-          :disabled="!valid"
-          color="primary"
-          class="mt-4 mr-4"
-          @click="validate"
-        >{{$t('contact.validate')}}</v-btn>
-      </v-form>
-    </v-card-text>
-  </v-card>
+          <v-btn
+            :disabled="!valid"
+            color="primary"
+            class="mt-4 mr-4"
+            @click="validate"
+            >{{ $t('contact.validate') }}</v-btn
+          >
+        </v-form>
+      </v-card-text>
+    </v-card>
+  </div>
 </template>
 
 
 <script lang="ts">
-import { defineComponent, ref, watch } from '@nuxtjs/composition-api'
+import { defineComponent, ref, watch, computed } from '@nuxtjs/composition-api'
 
 export default defineComponent({
   name: 'Contact',
@@ -50,10 +69,12 @@ export default defineComponent({
     const myForm: any = ref(null)
     const captcha = ref(false)
     const valid = ref(false)
+    const validated = ref(false)
 
-    const subject = ''
-    const name = ''
-    const email = ''
+    const subject = ref('')
+    const name = ref('')
+    const email = ref('')
+    const content = ref('')
 
     const emailRules = [
       (v: any) => !!v || 'E-mail is required',
@@ -64,23 +85,27 @@ export default defineComponent({
     const nameRules = [(v: any) => !!v || 'Name is required']
     const contentRules = [(v: any) => !!v || 'Content is required']
 
-    const content = null
-
     const checkCaptcha = (response: any) => {
-      captcha.value = response ? true : false
+       captcha.value = response ? true : false
     }
 
-    const validate = () => {
+    const mailContent = computed(() => {
+      return `Mail : ${email.value}, Content : ${content.value}`
+    })
+
+    const validate = async () => {
       console.log('in validate !')
       myForm.value.validate()
+      if (captcha.value === true) {
       console.log('sending !')
-      ctx.root.$axios.$post('/mail/send', {
-        from: 'John Doe',
-        subject: 'Incredible',
-        text: 'This is an incredible test message',
-        to: 'mikaleb@live.fr',
+      const { data, status } = await ctx.root.$axios.$post('/mail/send', {
+        from: 'triplaner@outlook.com',
+        subject: subject.value,
+        text: mailContent.value,
+        to: 'triplaner@outlook.com',
       })
-      console.log('sent !')
+      validated.value = true
+      }
     }
 
     watch(
@@ -105,6 +130,7 @@ export default defineComponent({
       content,
       validate,
       myForm,
+      validated,
     }
   },
 })

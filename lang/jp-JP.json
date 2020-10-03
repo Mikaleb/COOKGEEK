@@ -44,6 +44,14 @@
       "simple": "シンプルな"
     }
   },
-  "language": "言語"
-
+  "language": "言語",
+  "contact": {
+    "content": "何を伝えたいですか？",
+    "mail": "Eメール",
+    "name": "Name",
+    "subject": "件名",
+    "title": "連絡先",
+    "validate": "送信",
+    "validated": "メッセージが送信されました！"
+  }
 }

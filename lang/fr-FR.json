@@ -46,10 +46,12 @@
   },
   "language": "Langue",
   "contact": {
-    "subject": "Subject",
-    "name": "Name",
+    "subject": "Sujet",
+    "name": "Nom",
     "mail": "E-mail",
     "content": "Que voulez-vous nous dire ?",
-    "validate": "Validate"
+    "validate": "Envoyer",
+    "title": "Contact",
+    "validated": "Le message a été envoyé !"
   }
 }

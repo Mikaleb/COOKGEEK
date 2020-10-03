@@ -1,13 +1,17 @@
 <template>
   <div>
-    <v-card class="mx-auto" shaped style="border-radius: 1rem !important;">
+    <v-card class="mx-auto" shaped style="border-radius: 1rem !important">
       <v-card-text>
         <h1 class="mb-6 text-center" v-html="data.title.rendered"></h1>
         <div class="text--primary">
           <Metas :data="data"></Metas>
           <!-- Times -->
           <TimePills :article="data" class="pt-4"></TimePills>
-          <div class="content" v-html="data.content.rendered"></div>
+          <div
+            class="pt-4"
+            v-html="data.content.rendered"
+            v-if="data.content.rendered"
+          ></div>
         </div>
       </v-card-text>
     </v-card>

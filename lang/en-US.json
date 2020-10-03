@@ -50,6 +50,8 @@
     "mail": "E-mail",
     "name": "Name",
     "subject": "Subject",
-    "validate": "Validate"
+    "validate": "Validate",
+    "title": "Contact",
+    "validated": "The message has been sent !"
   }
 }

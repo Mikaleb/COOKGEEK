@@ -8,6 +8,7 @@
       </v-card-text>
     </v-card>
     <span class="ml-4 text-xs">&copy; CDG 2017 - {{ new Date().getFullYear() }}</span>
+    <span class="ml-4 text-xs"><a href="mailto:contact@cuisinedegeek.com">{{$t('contact.title')}}</a></span>
   </div>
 </template>
 
