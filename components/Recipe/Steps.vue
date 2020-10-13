@@ -1,7 +1,7 @@
 <template>
   <div class="mt-12">
     <v-card class="p-6 mt-6" shaped style="border-radius: 1rem !important">
-      <h2 class="m-4 text-2xl font-bold">
+      <h2 class="m-4 head-fond">
         {{ $tc('common.recipe.step', steps.length) }}
       </h2>
       <v-card-text v-if="steps" style="font-size: 1rem !important">

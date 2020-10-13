@@ -2,12 +2,13 @@
   <div class="mt-12">
     <v-card class="p-6" shaped style="border-radius: 1rem !important">
       <template v-if="data" id="ingredients">
-        <v-card-title class="font-weight-bold">{{
+        <v-card-title class="head-fond">{{
           $tc('common.recipe.ingredient', nbIngredients)
         }}</v-card-title>
         <v-card-text>
           <v-checkbox
             v-for="(ingredient, i) in data"
+            hide-details
             :key="i"
             :label="`${ingredient.quantity} ${ingredient.name}`"
           ></v-checkbox>

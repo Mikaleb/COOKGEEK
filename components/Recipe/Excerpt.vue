@@ -14,12 +14,18 @@
     />
 
     <nuxt-link :to="slugUrl(propArticle.slug)">
-      <v-card-title v-html="propArticle.title.rendered"></v-card-title>
+      <v-card-title
+        class="head-fond"
+        v-html="propArticle.title.rendered"
+      ></v-card-title>
     </nuxt-link>
     <v-card-text>
       <div id="content">
         <!-- Excerpt -->
-        <span v-html="propArticle.content.rendered" v-if="propArticle.content.rendered"></span>
+        <span
+          v-html="propArticle.content.rendered"
+          v-if="propArticle.content.rendered"
+        ></span>
         <!-- Time -->
         <v-chip-group column active-class="primary--text">
           <time-pill :article="propArticle"></time-pill>

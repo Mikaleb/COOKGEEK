@@ -12,9 +12,9 @@
         </v-col>
         <v-col :lg="7" :md="7" :sm="12" offset-xs="0" offset-md="0">
           <steps v-if="propData" :steps="propData.acf.steps"></steps>
-          <comments></comments>
         </v-col>
       </v-row>
+      <comments></comments>
     </article>
 
     <!-- Mobile -->

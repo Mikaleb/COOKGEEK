@@ -5,7 +5,7 @@
         <v-img
           v-if="getFeaturedImage(propData, 'full')"
           :src="getFeaturedImage(propData, 'full').source_url"
-          height="200px"
+          max-height="300px"
           class="rounded-lg cursor-pointer"
           v-bind="attrs"
           v-on="on"

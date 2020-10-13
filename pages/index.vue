@@ -2,7 +2,9 @@
   <div class="home">
     <div class="articles" v-if="articles.length">
       <!-- <TheHero :hero-article="articlesList[0]" /> -->
-      <h1 class v-cloak>{{ $tc('common.recipe.last', articles.length) }}</h1>
+      <h1 class="head-fond" v-cloak>
+        {{ $tc('common.recipe.last', articles.length) }}
+      </h1>
       <RecipeList :articles="articles" />
       <insta></insta>
     </div>

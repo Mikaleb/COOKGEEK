@@ -1,10 +1,14 @@
 <template>
   <v-layout class="mt-12">
     <v-container>
-      <v-card shaped style="border-radius: 1rem !important;">
-        <h2 class="m-4 text-2xl font-bold text-center">{{ $t('common.comments') }}</h2>
+      <v-card shaped style="border-radius: 1rem !important">
+        <h2 class="m-4 head-fond text-center">{{ $t('common.comments') }}</h2>
         <v-card-text>
-          <Disqus shortname="cdg-site" :identifier="`cdg-site`" :url="baseUrl"></Disqus>
+          <Disqus
+            shortname="cdg-site"
+            :identifier="`cdg-site`"
+            :url="baseUrl"
+          ></Disqus>
         </v-card-text>
       </v-card>
     </v-container>

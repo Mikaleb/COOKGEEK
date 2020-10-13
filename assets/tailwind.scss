@@ -1,13 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
 
 $body-font-family: 'Lato';
 $title-font: 'Lato';
+
+$head-font: 'DM Serif Display';
+
+$grey-color: '#413F47';
 
 
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+.v-application {
+  font-family: $body-font-family, sans-serif !important;
+
+  .title {
+    // To pin point specific classes of some components
+    font-family: $title-font, sans-serif !important;
+  }
+}
 
 .v-item-group.v-bottom-navigation .v-btn.v-size--default {
   height: inherit;
@@ -31,7 +43,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: #413F47;
+  color: $grey-color;
 }
 
 h1 {
@@ -39,9 +51,16 @@ h1 {
 }
 
 
-.recipe-title {
-  @apply text-xl font-bold;
-  color: #413F47;
+h1.recipe-title {
+  @apply text-4xl font-bold;
+  color: $grey-color;
+  font-family: $head-font;
+}
+
+.head-fond {
+  font-family: $head-font;
+  color: $grey-color;
+  @apply text-2xl ;
 }
 
 .menu-text {
