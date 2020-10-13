@@ -1,14 +1,15 @@
 <template>
   <div class="mt-12">
-    <v-card class="mt-6" shaped style="border-radius: 1rem !important;">
-      <h2 class="m-4 text-2xl font-bold text-center">{{ $tc('common.recipe.step', steps.length) }}</h2>
-      <v-card-text v-if="steps" style="font-size:1rem!important">
-        <div v-for="(step, i) in steps" :key="i" :id="'step'+(i+1)">
-          <span
-            class="font-bold uppercase"
-          >{{ $tc('common.recipe.step', steps.length) }} {{ i + 1 }}</span>
-          <p class="pt-2 pl-8 font-medium">{{ step.content }}</p>
-        </div>
+    <v-card class="p-6 mt-6" shaped style="border-radius: 1rem !important">
+      <h2 class="m-4 text-2xl font-bold">
+        {{ $tc('common.recipe.step', steps.length) }}
+      </h2>
+      <v-card-text v-if="steps" style="font-size: 1rem !important">
+        <ol class="list-number">
+          <li v-for="(step, i) in steps" :key="i" :id="'step' + (i + 1)">
+            <p class="pl-5 font-medium mb-7">{{ step.content }}</p>
+          </li>
+        </ol>
       </v-card-text>
     </v-card>
   </div>
@@ -29,3 +30,26 @@ export default defineComponent({
   },
 })
 </script>
+
+<style scoped>
+ol.list-number {
+  counter-reset: a;
+}
+
+ol.list-number li:before {
+  top: 0.188rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  font-size: small;
+  content: counter(a);
+  counter-increment: a;
+  border: 0.063rem solid #000;
+  border-radius: 50%;
+  margin-left: -1rem;
+  margin-right: 1rem;
+  float: left;
+}
+</style>

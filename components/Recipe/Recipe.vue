@@ -2,49 +2,30 @@
   <div>
     <!-- PC -->
     <article class="single hidden-sm-and-down" v-if="propData">
+      <TitleCard :data="propData" v-if="propData"></TitleCard>
       <v-row class>
-        <v-col :lg="4" :md="4" :sm="12">
-          <v-card class shaped style="border-radius: 1rem !important;">
-            <HoverImage :data="propData"></HoverImage>
-            <template v-if="propData.acf" id="ingredients">
-              <v-card-title
-                class="font-weight-bold"
-              >{{ $tc('common.recipe.ingredient', propData.acf.ingredients.length) }}</v-card-title>
-              <v-card-text>
-                <Ingredients :data="propData.acf.ingredients"></Ingredients>
-              </v-card-text>
-            </template>
-          </v-card>
+        <v-col :lg="4" :md="4">
+          <Ingredients
+            :data="propData.acf.ingredients"
+            :nbIngredients="propData.acf.ingredients.length"
+          ></Ingredients>
         </v-col>
-        <v-col :lg="7" :md="7" :sm="12" offset-xs="0" offset-md="1">
-          <TitleCard :data="propData" v-if="propData"></TitleCard>
+        <v-col :lg="7" :md="7" :sm="12" offset-xs="0" offset-md="0">
           <steps v-if="propData" :steps="propData.acf.steps"></steps>
           <comments></comments>
         </v-col>
       </v-row>
     </article>
+
     <!-- Mobile -->
     <article class="single hidden-md-and-up" v-if="propData">
-      <v-row class>
-        <v-col :lg="7" :md="7" :sm="12" offset-xs="0" offset-md="1">
-          <HoverImage :data="propData"></HoverImage>
-          <TitleCard :data="propData" v-if="propData"></TitleCard>
-        </v-col>
-        <v-col :lg="4" :md="4" :sm="12">
-          <v-card class shaped style="border-radius: 1rem !important;">
-            <template v-if="propData.acf" id="ingredients">
-              <v-card-title
-                class="font-weight-bold"
-              >{{ $tc('common.recipe.ingredient', propData.acf.ingredients.length) }}</v-card-title>
-              <v-card-text>
-                <Ingredients :data="propData.acf.ingredients"></Ingredients>
-              </v-card-text>
-            </template>
-          </v-card>
-          <steps v-if="propData" :steps="propData.acf.steps"></steps>
-          <comments></comments>
-        </v-col>
-      </v-row>
+      <TitleCard :data="propData" v-if="propData"></TitleCard>
+      <Ingredients
+        :data="propData.acf.ingredients"
+        :nbIngredients="propData.acf.ingredients.length"
+      ></Ingredients>
+      <steps v-if="propData" :steps="propData.acf.steps"></steps>
+      <comments></comments>
     </article>
   </div>
 </template>
@@ -82,7 +63,7 @@ export default defineComponent({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   setup(props, ctx) {
     // @ts-ignore
-    const {  article } = usePosts({ ctx })
+    const { article } = usePosts({ ctx })
     const slug = ctx.root.$route.params?.article
     const propData = computed(() => props.data)
     const colorAccentStyles = ref<any>(null)

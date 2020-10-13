@@ -1,20 +1,25 @@
 <template>
   <div>
-    <v-card class="mx-auto" shaped style="border-radius: 1rem !important">
-      <v-card-text>
-        <h1 class="mb-6 text-center" v-html="data.title.rendered"></h1>
-        <div class="text--primary">
-          <Metas :data="data"></Metas>
-          <!-- Times -->
-          <TimePills :article="data" class="pt-4"></TimePills>
-          <div
-            class="pt-4"
-            v-html="data.content.rendered"
-            v-if="data.content.rendered"
-          ></div>
-        </div>
-      </v-card-text>
-    </v-card>
+    <div class="grid mx-auto" shaped style="border-radius: 1rem !important">
+      <v-row>
+        <v-col :lg="4" :md="4" :sm="12" class="ma-0 pa-0">
+          <HoverImage :data="data"></HoverImage>
+        </v-col>
+        <v-col :lg="8" :md="8" :sm="12">
+          <h1 class="mb-6 text-center" v-html="data.title.rendered"></h1>
+          <div class="text--primary">
+            <Metas :data="data"></Metas>
+            <!-- Times -->
+            <TimePills :article="data" class="pt-4"></TimePills>
+            <div
+              class="pt-4"
+              v-html="data.content.rendered"
+              v-if="data.content.rendered"
+            ></div>
+          </div>
+        </v-col>
+      </v-row>
+    </div>
   </div>
 </template>
 

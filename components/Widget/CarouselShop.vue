@@ -2,9 +2,11 @@
   <v-card shaped style="border-radius: 1rem !important" class="mb-8">
     <template>
       <a href="https://cuisinedegeek.com/shop">
-        <v-card-title class="font-weight-bold">{{ $t('common.ads.shop') }}</v-card-title>
+        <v-card-title class="font-weight-bold">{{
+          $t('common.ads.shop')
+        }}</v-card-title>
       </a>
-      <v-card-text style="min-height:150px;min-width:150px">
+      <v-card-text style="min-height: 150px; min-width: 150px">
         <v-carousel
           cycle
           lazy
@@ -18,7 +20,7 @@
             v-for="(product, i) in products.products"
             :key="i"
             :src="product.image.src"
-            :href="'https://shop.cuisinedegeek.com/'"
+            :href="'https://shop.cuisinedegeek.com/products/' + product.handle"
             transition="fade-transition"
             class="pb-4"
           ></v-carousel-item>

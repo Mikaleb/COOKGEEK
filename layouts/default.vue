@@ -60,13 +60,12 @@
           <searchbar></searchbar>
         </div>
         <v-row class="mt-6 mb-6">
-          <v-col :lg="7" :md="7" :sm="12">
+          <v-col :lg="9" :md="9" :sm="12">
             <nuxt />
           </v-col>
-          <v-col :lg="4" :md="4" :sm="12" offset-md="1" :offset-sm="0" class>
+          <v-col :lg="3" :md="3" :sm="12" offset-md="0" :offset-sm="0" class>
             <!-- Widgets -->
             <carousel-shop></carousel-shop>
-            <adsense></adsense>
             <info></info>
           </v-col>
         </v-row>
@@ -78,7 +77,6 @@
 
 
 <script>
-import Adsense from '~/components/Widget/Adsense.vue'
 import CarouselShop from '~/components/Widget/CarouselShop.vue'
 import Searchbar from '~/components/Search/Searchbar.vue'
 import Info from '~/components/Widget/Info.vue'
@@ -96,7 +94,6 @@ export default {
   components: {
     CarouselShop,
     Searchbar,
-    Adsense,
     Info,
   },
 
@@ -131,7 +128,11 @@ export default {
         { hid: 'og:url', name: 'og:url', content: this.localUrl },
         { hid: 'og:type', name: 'og:type', content: 'website' },
         { hid: 'og:title', name: 'og:title', content: websiteName },
-        { hid: 'og:image', name: 'og:image', content: 'https//cuisinedegeek.com/ogimage.png' },
+        {
+          hid: 'og:image',
+          name: 'og:image',
+          content: 'https//cuisinedegeek.com/ogimage.png',
+        },
         { hid: 'og:image:alt', name: 'og:image:alt', content: 'Logo' },
         { hid: 'og:site_name', name: 'og:site_name', content: 'Logo' },
         {
