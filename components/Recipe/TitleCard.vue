@@ -8,14 +8,21 @@
       <v-col :lg="4" :md="4" :sm="12" class="ma-0 pa-0">
         <HoverImage :data="data"></HoverImage>
       </v-col>
-      <v-col :lg="6" :md="6" :sm="12" :offset-md="1" :offset-lg="1">
-        <h1 class="mb-6 recipe-title" v-html="data.title.rendered"></h1>
-        <div class="text--primary">
+      <v-col
+        :lg="6"
+        :md="6"
+        :sm="12"
+        :offset-sm="0"
+        :offset-md="1"
+        :offset-lg="1"
+      >
+        <h1 class="p-2 mb-6 recipe-title" v-html="data.title.rendered"></h1>
+        <div class="text--primary p2">
           <Metas :data="data"></Metas>
           <!-- Times -->
           <TimePills :article="data" class="pt-4"></TimePills>
           <div
-            class="pt-4"
+            class="p-2 pt-4"
             v-html="data.content.rendered"
             v-if="data.content.rendered"
           ></div>

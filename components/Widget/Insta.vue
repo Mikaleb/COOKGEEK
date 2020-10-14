@@ -6,7 +6,7 @@
           <v-icon class="pr-4">fab fa-instagram</v-icon>Instagram
         </v-card-title>
       </a>
-      <v-card-text style="min-height:150px;min-width:150px">
+      <v-card-text style="min-height: 150px; min-width: 150px">
         <v-container fluid>
           <div class="pl-2">
             <v-avatar>
@@ -14,7 +14,7 @@
             </v-avatar>
 
             <v-btn
-              class="ml-4 ma-2"
+              class="ml-4 ma-2 hidden-sm-and-down"
               tile
               color="indigo"
               dark
@@ -22,13 +22,12 @@
               target="_blank"
             >
               <i class="pr-1 fab fa-instagram"></i>
-              <span>{{$t('common.ads.instagram')}}</span>
+              <span>{{ $t('common.ads.instagram') }}</span>
             </v-btn>
             <p class="mt-2">
               CDG: Popculture Recipes
               <br />🍧 Food Pics Sharing - #popculture #recipes #geekfood
-              <br />🎽🍀 Shop available
-              <br />✈️ Fast worldwide shipping
+              <br />🎽🍀 Shop available <br />✈️ Fast worldwide shipping
               <br />⏬ Recipes - website in desc ( 🇺🇸🇫🇷🇯🇵 )
               <br />
             </p>
@@ -37,7 +36,7 @@
           <v-row class="justify-center">
             <v-col cols="12">
               <v-row class="justify-center">
-                <template v-for="(n,i) in data">
+                <template v-for="(n, i) in data">
                   <template v-if="i <= 11">
                     <div class="ma-3 pa-3" :key="n.id">
                       <a :href="n.permalink" target="_blank">

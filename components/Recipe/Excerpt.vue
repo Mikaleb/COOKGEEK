@@ -1,7 +1,7 @@
 <template>
   <v-card
     class="mb-6"
-    max-width="344"
+    max-width="300"
     v-if="propArticle._links"
     :sm="6"
     :md="propArticle._links['wp:featuredmedia'][0].href ? 9 : 12"
@@ -9,7 +9,7 @@
     <RecipeImage
       :imageLink="propArticle._links['wp:featuredmedia'][0].href"
       :class-prop="'rounded'"
-      height="200px"
+      max-height="150px"
       :hrefProp="slugUrl(propArticle.slug)"
     />
 

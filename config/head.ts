@@ -50,5 +50,10 @@ export default {
     { rel: 'alternate', hreflang: 'fr', href: '/fr' },
     { rel: 'alternate', hreflang: 'ja', href: '/ja' },
     { rel: 'me', href: 'mailto:contact@cuisinedegeek.com' },
+    {
+      rel: 'stylesheet',
+      href:
+        'https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap',
+    },
   ],
 }

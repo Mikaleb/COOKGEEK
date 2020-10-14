@@ -41,15 +41,15 @@ ol.list-number li:before {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1.5rem;
+  height: 1.5rem;
   font-size: small;
   content: counter(a);
   counter-increment: a;
   border: 0.063rem solid #000;
   border-radius: 50%;
-  margin-left: -1rem;
-  margin-right: 1rem;
+  margin-left: -1.5rem;
+  margin-right: -1.5rem;
   float: left;
 }
 </style>

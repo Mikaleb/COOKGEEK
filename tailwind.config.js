@@ -5,6 +5,9 @@ module.exports = {
   },
   purge: [],
   theme: {
+    fontFamily: {
+      'sans': ['Lato', 'Sans-serif']
+    },
     extend: {},
   },
   variants: {},

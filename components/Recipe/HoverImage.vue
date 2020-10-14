@@ -5,7 +5,8 @@
         <v-img
           v-if="getFeaturedImage(propData, 'full')"
           :src="getFeaturedImage(propData, 'full').source_url"
-          max-height="300px"
+          :max-height="maxheight"
+          :max-width="maxwidth"
           class="rounded-lg cursor-pointer"
           v-bind="attrs"
           v-on="on"
@@ -42,6 +43,35 @@ export default defineComponent({
   setup(props, ctx) {
     // @ts-ignore
     const propData = computed(() => props.data)
+    const maxheight = computed(() => {
+      switch (ctx.root.$vuetify.breakpoint.name) {
+        case 'xs':
+          return 220
+        case 'sm':
+          return 400
+        case 'md':
+          return 300
+        case 'lg':
+          return 300
+        case 'xl':
+          return 500
+      }
+    })
+
+    const maxwidth = computed(() => {
+      switch (ctx.root.$vuetify.breakpoint.name) {
+        case 'xs':
+          return 300
+        case 'sm':
+          return 400
+        case 'md':
+          return 300
+        case 'lg':
+          return 300
+        case 'xl':
+          return 500
+      }
+    })
     const dialog = false
 
     const getFeaturedImage = (recipe: any, size: any) => {
@@ -53,7 +83,7 @@ export default defineComponent({
       }
     }
 
-    return { getFeaturedImage, propData, dialog }
+    return { getFeaturedImage, propData, dialog, maxheight, maxwidth }
   },
 })
 </script>

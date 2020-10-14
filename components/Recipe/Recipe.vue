@@ -18,8 +18,10 @@
     </article>
 
     <!-- Mobile -->
-    <article class="single hidden-md-and-up" v-if="propData">
-      <TitleCard :data="propData" v-if="propData"></TitleCard>
+    <article class="w-full single hidden-md-and-up" v-if="propData">
+      <v-container>
+        <TitleCard :data="propData" v-if="propData"></TitleCard>
+      </v-container>
       <Ingredients
         :data="propData.acf.ingredients"
         :nbIngredients="propData.acf.ingredients.length"
