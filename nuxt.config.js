@@ -97,15 +97,17 @@ export default {
     [
       'nuxt-i18n',
       {
+        seo: true,
         locales: [
-          { code: 'en', iso: 'en_US', file: 'en-US.json', name: 'English' },
+          { code: 'en', iso: 'en_US', file: 'en-US.json', name: 'English', isCatchallLocale: true },
           { code: 'fr', iso: 'fr-FR', file: 'fr-FR.json', name: 'Français' },
           { code: 'ja', iso: 'ja', file: 'jp-JP.json', name: '日本人' }
         ],
         defaultLocale: 'en',
         detectBrowserLanguage: {
           useCookie: true,
-          alwaysRedirect: true
+          alwaysRedirect: true,
+          onlyOnRoot: true
         },
         lazy: true,
         langDir: 'lang/'

@@ -6,10 +6,17 @@
     :sm="6"
     :md="propArticle._links['wp:featuredmedia'][0].href ? 9 : 12"
   >
+    <v-skeleton-loader
+      v-bind="attrs"
+      type="card-avatar, article, actions"
+      v-if="!propArticle.slug"
+    ></v-skeleton-loader>
+
     <RecipeImage
       :imageLink="propArticle._links['wp:featuredmedia'][0].href"
       :class-prop="'rounded'"
-      max-height="150px"
+      :maxh="150"
+      :maxw="300"
       :hrefProp="slugUrl(propArticle.slug)"
     />
 
@@ -33,11 +40,6 @@
         </v-chip-group>
       </div>
     </v-card-text>
-
-    <v-card-actions>
-      <!-- <v-btn text>Share</v-btn> -->
-      <!-- <v-btn color="purple" text>Explore</v-btn> -->
-    </v-card-actions>
   </v-card>
 </template>
 

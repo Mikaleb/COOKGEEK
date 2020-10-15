@@ -6,7 +6,7 @@ export default {
     if (title === 'Cuisine De Geek') {
       return title
     }
-    return `${title} - Cuisine De Geek`
+    return `${title} | Cuisine De Geek`
   },
   meta: [
     { charset: 'UTF-8' },

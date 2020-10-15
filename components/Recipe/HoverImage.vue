@@ -3,10 +3,9 @@
     <v-dialog v-model="dialog" max-width="1200">
       <template v-slot:activator="{ on, attrs }">
         <v-img
-          v-if="getFeaturedImage(propData, 'full')"
-          :src="getFeaturedImage(propData, 'full').source_url"
+          v-if="getFeaturedImage(propData, 'medium')"
+          :src="getFeaturedImage(propData, 'medium').source_url"
           :max-height="maxheight"
-          :max-width="maxwidth"
           class="rounded-lg cursor-pointer"
           v-bind="attrs"
           v-on="on"
@@ -54,7 +53,7 @@ export default defineComponent({
         case 'lg':
           return 300
         case 'xl':
-          return 500
+          return 300
       }
     })
 
@@ -69,7 +68,7 @@ export default defineComponent({
         case 'lg':
           return 300
         case 'xl':
-          return 500
+          return 300
       }
     })
     const dialog = false

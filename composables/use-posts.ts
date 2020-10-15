@@ -15,6 +15,7 @@ interface Options {
 type globalState = {
   articles: object | null
   article: Article[] | null
+  categories: any | null
 }
 
 export default function usePosts({ ctx }: Options) {
@@ -28,6 +29,7 @@ export default function usePosts({ ctx }: Options) {
   const globalState: globalState = reactive({
     articles: {},
     article: [],
+    categories: [],
   })
 
   const Cookie = process.client ? require('js-cookie') : undefined
@@ -70,10 +72,26 @@ export default function usePosts({ ctx }: Options) {
     return data
   }
 
+  const fetchCategories = async (id: number, order: number) => {
+    const { data } = await ctx.root.$axios.get(
+      `${process.env.NUXT_ENV_WORDPRESS_API_URL}/wp-json/wp/v2/category/${id}`
+    )
+
+    const catData = {
+      text: data.name,
+      disabled: false,
+    }
+
+    globalState.categories[order] = catData
+
+    return catData
+  }
+
   return {
     ...toRefs(apiState),
     ...toRefs(globalState),
     fetchArticlesList,
     fetchArticleData,
+    fetchCategories,
   }
 }

@@ -46,7 +46,13 @@
                             :height="150"
                             :width="150"
                             :class="{ 'on-hover': hover }"
-                          ></v-img>
+                          >
+                            <v-skeleton-loader
+                              v-bind="attrs"
+                              type="image"
+                              v-if="!n.media_url"
+                            ></v-skeleton-loader>
+                          </v-img>
                         </v-hover>
                       </a>
                     </div>

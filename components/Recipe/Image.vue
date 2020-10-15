@@ -7,6 +7,8 @@
         :height="propHeight"
         :alt="propImageLink.alt_text"
         :src="urlImg"
+        :max-height="maxh"
+        :max-width="maxw"
       ></v-img>
     </nuxt-link>
   </div>
@@ -32,6 +34,8 @@ export default defineComponent({
     classProp: String,
     height: String,
     hrefProp: String,
+    maxh: Number,
+    maxw: Number,
   },
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   setup(props, ctx) {

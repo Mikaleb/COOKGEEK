@@ -110,6 +110,7 @@ export default {
 
   head() {
     const websiteName = 'Cuisine De Geek'
+    const i18nSeo = this.$nuxtI18nSeo()
     return {
       title: this.title,
       meta: [
@@ -145,7 +146,12 @@ export default {
           name: 'og:description',
           content: this.description || websiteName,
         },
+        ...i18nSeo.meta,
       ],
+      link: [...i18nSeo.link],
+      htmlAttrs: {
+        ...i18nSeo.htmlAttrs,
+      },
     }
   },
 }
