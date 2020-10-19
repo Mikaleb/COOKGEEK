@@ -1,20 +1,31 @@
 <template>
   <span>
+    <!-- Universe -->
+    <v-chip
+      class="mr-2"
+      v-if="data.acf.universe"
+      color="#B87BC8"
+      text-color="white"
+    >
+      <v-icon size="medium" class="ml-1" left>fas fa-disease</v-icon>
+      <template>{{ data.acf.universe }}</template>
+    </v-chip>
     <!-- Servings -->
     <v-tooltip bottom>
       <template v-slot:activator="{ on }">
-        <v-chip class="mr-2" v-if="data.acf.servings > 0" v-on="on" color="primary">
+        <v-chip
+          class="mr-2"
+          v-if="data.acf.servings > 0"
+          v-on="on"
+          color="primary"
+        >
           <v-icon size="medium" class="ml-1" left>fas fa-utensils</v-icon>
           <template>{{ data.acf.servings }}</template>
         </v-chip>
       </template>
       <span>{{ $t('common.recipe.servings') }}</span>
     </v-tooltip>
-    <!-- Universe -->
-    <v-chip class="mr-2" v-if="data.acf.universe" color="#B87BC8" text-color="white">
-      <v-icon size="medium" class="ml-1" left>fas fa-disease</v-icon>
-      <template>{{ data.acf.universe }}</template>
-    </v-chip>
+
     <!-- Difficulty -->
     <v-tooltip bottom>
       <template v-slot:activator="{ on }">
@@ -28,7 +39,7 @@
           <v-icon size="medium" class="ml-1" left>fas fa-tachometer-alt</v-icon>
         </v-chip>
       </template>
-      <span>{{ difficulties[data.acf.difficulty]}}</span>
+      <span>{{ difficulties[data.acf.difficulty] }}</span>
     </v-tooltip>
   </span>
 </template>

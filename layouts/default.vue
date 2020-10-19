@@ -7,7 +7,7 @@
       </v-btn>
       <v-spacer />
       <v-toolbar-title>
-        <nuxt-link to="/">
+        <nuxt-link :to="'/' + locale">
           <img
             data-src="/logo.svg"
             v-lazy-load
@@ -89,6 +89,7 @@ export default {
       image: '',
       title: 'Cuisine De Geek',
       description: this.$i18n.t('common.meta.description'),
+      locale: this.$i18n.locale !== 'en' ? this.$i18n.locale : '' ,
     }
   },
   components: {

@@ -54,44 +54,9 @@ export default function usePosts({ ctx }: Options) {
     globalState.articles = data
   }
 
-  const fetchArticleData = async (config: ArticleConfig) => {
-    apiState.fetching = true
-
-    const { data } = await ctx.root.$axios.get(
-      `${process.env.NUXT_ENV_WORDPRESS_API_URL}/wp-json/wp/v2/${config.subcategory}`,
-      {
-        params: {
-          slug: config.articleSlug,
-          id: config.id,
-          lang: cookieLang,
-          _embed: true,
-        },
-      }
-    )
-    globalState.article = data
-    return data
-  }
-
-  const fetchCategories = async (id: number, order: number) => {
-    const { data } = await ctx.root.$axios.get(
-      `${process.env.NUXT_ENV_WORDPRESS_API_URL}/wp-json/wp/v2/category/${id}`
-    )
-
-    const catData = {
-      text: data.name,
-      disabled: false,
-    }
-
-    globalState.categories[order] = catData
-
-    return catData
-  }
-
   return {
     ...toRefs(apiState),
     ...toRefs(globalState),
     fetchArticlesList,
-    fetchArticleData,
-    fetchCategories,
   }
 }

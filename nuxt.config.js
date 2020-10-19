@@ -1,5 +1,7 @@
 import colors from 'vuetify/es5/util/colors'
 import head from './config/head'
+import axios from 'axios'
+
 export default {
   /*
   ** Nuxt rendering mode
@@ -114,7 +116,12 @@ export default {
       }
     ],
     ['nuxt-bugsnag', {
-      apiKey: '1690164e4e6016f5484b56c7f9bb9523'
+      apiKey: '1690164e4e6016f5484b56c7f9bb9523',
+      reporterOptions: {
+        releaseStage: process.env.NODE_ENV,
+        autoAssignRelease: true
+      },
+      publishRelease: true,
     }]
   ],
 

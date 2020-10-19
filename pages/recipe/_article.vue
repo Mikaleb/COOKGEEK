@@ -2,7 +2,12 @@
   <div class="w-full" v-if="article">
     <template v-if="article[0]">
       <template v-if="article[0].type === 'recipe'">
-        <Recipe :data="article[0]" v-if="article[0]" type="recipe" />
+        <Recipe
+          v-if="article[0] && categories"
+          :data="article[0]"
+          :categories="categories"
+          type="recipe"
+        />
         <StructuredData
           :data="article[0]"
           :imageUrl="image.source_url"
@@ -19,12 +24,14 @@ export default {
     return {
       article: [],
       image: '',
+      categories: [],
     }
   },
   async asyncData(context) {
-    const slug = context.route.params?.article
+    const slug = context.route.params.article
     const config = { articleSlug: slug, subcategory: 'recipe' }
     const cookieLang = context.$cookies.get('i18n_redirected')
+    const categories = []
 
     const { data } = await context.$axios.get(
       `${process.env.NUXT_ENV_WORDPRESS_API_URL}/wp-json/wp/v2/${config.subcategory}`,
@@ -36,6 +43,21 @@ export default {
         },
       }
     )
+    if (data[0]) {
+      data[0].category.map(async (item, index) => {
+        const { data } = await context.$axios.get(
+          `${process.env.NUXT_ENV_WORDPRESS_API_URL}/wp-json/wp/v2/category/${item}`
+        )
+
+        const catData = {
+          text: data.name,
+          disabled: true,
+          href: '#',
+        }
+
+        categories[index] = catData
+      })
+    }
 
     const recipePictures = await context.$axios.get(
       data[0]['_links']['wp:featuredmedia'][0].href,
@@ -47,7 +69,7 @@ export default {
       }
     )
 
-    return { article: data, image: recipePictures.data }
+    return { article: data, image: recipePictures.data, categories }
   },
 
   head() {

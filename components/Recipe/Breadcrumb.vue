@@ -1,6 +1,8 @@
 <template>
   <div>
-    <v-breadcrumbs :items="categories"></v-breadcrumbs>
+    <div class="justify-left row align-center" v-if="propCategories">
+      <v-breadcrumbs :items="propCategories" />
+    </div>
   </div>
 </template>
 
@@ -11,22 +13,13 @@ import usePosts from '~/composables/use-posts'
 export default defineComponent({
   name: 'Breadcrumb',
   props: {
-    items: Array,
+    categories: Array,
   },
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   setup(props, ctx) {
-    const { categories, fetchCategories } = usePosts({ ctx })
-    const propItems = computed(() => props.items)
+    const propCategories = computed(() => props.categories?.reverse())
 
-    onMounted(async () => {
-      if (propItems.value) {
-        propItems.value.forEach((element: any, index: number) => {
-          fetchCategories(element, index)
-        })
-      }
-    })
-
-    return { propItems, fetchCategories, categories }
+    return { propCategories }
   },
 })
 </script>

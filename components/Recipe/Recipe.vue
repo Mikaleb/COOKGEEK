@@ -2,7 +2,11 @@
   <div>
     <!-- PC -->
     <article class="single hidden-sm-and-down" v-if="propData">
-      <TitleCard :data="propData" v-if="propData"></TitleCard>
+      <TitleCard
+        :data="propData"
+        :categories="propCategories"
+        v-if="propData"
+      ></TitleCard>
       <v-row class>
         <v-col :lg="4" :md="4">
           <Ingredients
@@ -60,14 +64,17 @@ export default defineComponent({
   },
   props: {
     data: Object,
+    categories: Array,
     type: String,
   },
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   setup(props, ctx) {
     // @ts-ignore
     const { article } = usePosts({ ctx })
+
     const slug = ctx.root.$route.params?.article
     const propData = computed(() => props.data)
+    const propCategories = computed(() => props.categories)
     const colorAccentStyles = ref<any>(null)
 
     const getFeaturedImage = (recipe: any, size: any) => {
@@ -79,7 +86,14 @@ export default defineComponent({
       }
     }
 
-    return { article, getFeaturedImage, colorAccentStyles, slug, propData }
+    return {
+      article,
+      getFeaturedImage,
+      colorAccentStyles,
+      slug,
+      propData,
+      propCategories,
+    }
   },
 })
 </script>

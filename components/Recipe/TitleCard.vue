@@ -16,7 +16,7 @@
         :offset-md="1"
         :offset-lg="1"
       >
-        <breadcrumb :items="data.category"></breadcrumb>
+        <breadcrumb :categories="propCategories"></breadcrumb>
 
         <h1 class="p-2 mb-6 recipe-title" v-html="data.title.rendered"></h1>
         <div class="text--primary p2">
@@ -50,7 +50,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from '@nuxtjs/composition-api'
+import {
+  defineComponent,
+  computed,
+  onBeforeMount,
+} from '@nuxtjs/composition-api'
+import usePosts from '~/composables/use-posts'
+
 import Metas from '~/components/Recipe/Metas.vue'
 import TimePills from '~/components/Recipe/Time/Time.vue'
 import Breadcrumb from '~/components/Recipe/Breadcrumb.vue'
@@ -63,10 +69,13 @@ export default defineComponent({
   },
   props: {
     data: Object,
+    categories: Array,
   },
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   setup(props, ctx) {
-    return {}
+    const propCategories = computed(() => props.categories)
+
+    return {propCategories}
   },
 })
 </script>
