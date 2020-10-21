@@ -87,6 +87,7 @@ export default {
     '@nuxtjs/axios',
     'cookie-universal-nuxt',
     '@nuxtjs/pwa',
+    '@nuxtjs/device',
     '@nuxtjs/sitemap',
     [
       'nuxt-lazy-load',

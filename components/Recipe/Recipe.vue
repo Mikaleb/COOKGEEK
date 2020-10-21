@@ -18,20 +18,24 @@
           <steps v-if="propData" :steps="propData.acf.steps"></steps>
         </v-col>
       </v-row>
-      <comments></comments>
+      <comments v-if="$device.isDesktop"></comments>
     </article>
 
     <!-- Mobile -->
     <article class="w-full single hidden-md-and-up" v-if="propData">
       <v-container>
-        <TitleCard :data="propData" v-if="propData"></TitleCard>
+        <TitleCard
+          :data="propData"
+          v-if="propData"
+          :categories="propCategories"
+        ></TitleCard>
       </v-container>
       <Ingredients
         :data="propData.acf.ingredients"
         :nbIngredients="propData.acf.ingredients.length"
       ></Ingredients>
       <steps v-if="propData" :steps="propData.acf.steps"></steps>
-      <comments></comments>
+      <comments v-if="$device.isMobile"></comments>
     </article>
   </div>
 </template>
