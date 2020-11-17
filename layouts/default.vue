@@ -74,8 +74,6 @@
   </v-app>
 </template>
 
-
-
 <script>
 import CarouselShop from '~/components/Widget/CarouselShop.vue'
 import Searchbar from '~/components/Search/Searchbar.vue'

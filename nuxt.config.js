@@ -136,10 +136,18 @@ export default {
     cacheTime: 1000 * 60 * 60 * 2,
     trailingSlash: true,
     gzip: true,
+    i18n: 'en',
     routes: async () => {
       const { data } = await axios.get(`${process.env.NUXT_ENV_WORDPRESS_API_URL}/wp-json/wp/v2/recipe`)
       return data.map((data) => {
-        return '/' + data.slug
+        const structData = {
+          url: data.slug,
+          links: ['en', 'fr', 'ja'].map((lang) => ({
+            lang, url: `${lang}/${data.slug}`
+          })),
+        }
+        return structData
+        // return '/' + data.slug
       })
     }
   },
